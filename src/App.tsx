@@ -1,5 +1,15 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import LogoutPage from './pages/LogoutPage';
+import MainPage from './pages/MainPage';
+
 function App() {
-  return <div>앱입니다</div>;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

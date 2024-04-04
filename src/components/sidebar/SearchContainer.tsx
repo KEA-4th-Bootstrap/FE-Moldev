@@ -57,9 +57,13 @@ const SearchContainer = () => {
       <SearchInputBox searchType={searchType} setSearchType={setSearchType} />
       <div className="w-full flex flex-col items-center justify-start">
         {searchType === 'article' &&
-          searchArticleResult.map((item) => <ArticleListItemContainer key={item.id} item={item} />)}
+          searchArticleResult.map((item, idx) => (
+            <ArticleListItemContainer key={item.id + idx} item={item} />
+          ))}
         {searchType === 'user' &&
-          searchUserResult.map((item) => <SearchUserResultContainer key={item.name} item={item} />)}
+          searchUserResult.map((item, idx) => (
+            <SearchUserResultContainer key={item.name + idx} item={item} />
+          ))}
       </div>
     </div>
   );

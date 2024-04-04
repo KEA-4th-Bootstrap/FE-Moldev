@@ -102,7 +102,7 @@ const IslandContainer = () => {
     <div className="grow h-full flex items-center justify-center">
       <Canvas shadows camera={{ fov: 75, near: 0.1, far: 500, position: [5, 15, 30] }}>
         <OrbitControls minDistance={15} maxDistance={45} />
-        <ambientLight position={[0, 0, 0]} intensity={2} color="#FFFFFF" castShadow receiveShadow />
+        <ambientLight position={[0, 0, 0]} intensity={2} color="#FFFFFF" />
         <directionalLight
           ref={directionalLightRef}
           position={[positions[0][0], positions[0][1], positions[0][2]]}

@@ -1,16 +1,16 @@
 import { useFrame, useLoader } from '@react-three/fiber';
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import { AnimationMixer, Mesh } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/Addons.js';
 
 const IslandModel = () => {
-  const [hovered, setHover] = useState(false);
   const { scene, animations } = useLoader(GLTFLoader, '/models/island2/scene.gltf');
   const animationMixer = useRef<AnimationMixer | null>(null);
 
   useLayoutEffect(() => {
-    console.log(scene);
     if (!scene) return;
+    console.log('씬입니다');
+    console.log(scene);
 
     scene.castShadow = true;
     scene.receiveShadow = true;
@@ -21,7 +21,6 @@ const IslandModel = () => {
       child.receiveShadow = true;
       child.castShadow = true;
     });
-    console.log(scene);
   }, [scene]);
 
   useEffect(() => {
@@ -42,9 +41,23 @@ const IslandModel = () => {
     }
   });
 
-  useEffect(() => {
-    console.log(hovered);
-  }, [hovered]);
+  // const onModelClick = (e: any) => {
+  //   const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+  //   const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+
+  //   const raycaster = new Raycaster();
+  //   const mouseVector = new Vector2(mouseX, mouseY);
+  //   console.log(mouseVector);
+
+  //   const intersects = raycaster.intersectObject(scene, true);
+  //   if (intersects.length > 0) {
+  //     console.log('오브젝트 1개 이상 클릭됨');
+  //     console.log(intersects);
+
+  //     // arr의 마지막 오브젝트 이름 출력
+  //     console.log(intersects[intersects.length - 1].object.name);
+  //   }
+  // };
 
   return (
     <>
@@ -53,8 +66,7 @@ const IslandModel = () => {
         scale={0.2}
         position={[0, 0, 0]}
         castShadow
-        onPointerOver={() => setHover(true)}
-        onPointerOut={() => setHover(false)}
+        // onClick={onModelClick}
       />
     </>
   );

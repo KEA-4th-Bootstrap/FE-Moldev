@@ -9,7 +9,7 @@ import BlurBackgroundContainer from '../common/BlurBackgroundContainer';
 import LoginContainer from '../loginContainer/LoginContainer';
 
 const SideBar = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [clicked, setClicked] = useState<SideType>('list');
   const [isShow, setIsShow] = useState(false);
   const [childIsShow, setChildIsShow] = useState(false);
@@ -17,7 +17,7 @@ const SideBar = () => {
   const islandNamd = '복복두더지';
 
   useEffect(() => {
-    setIsLogin(false);
+    setIsLogin(true);
   }, []);
 
   useEffect(() => {
@@ -41,7 +41,6 @@ const SideBar = () => {
       };
     } else {
       setClicked('search');
-      setIsLogin(false);
     }
   }, [isShow]);
 

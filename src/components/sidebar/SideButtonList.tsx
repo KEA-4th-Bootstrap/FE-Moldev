@@ -49,7 +49,15 @@ const SideButtonList = ({
           </>
         ) : (
           <>
-            <Login className="cursor-pointer hover:scale-110" width={28} height={28} />
+            <Login
+              className="cursor-pointer hover:scale-110"
+              width={28}
+              height={28}
+              onClick={() => {
+                setClicked('login');
+                console.log('login clicked');
+              }}
+            />
             <Question className="cursor-pointer hover:scale-110" width={28} height={28} />
           </>
         )}

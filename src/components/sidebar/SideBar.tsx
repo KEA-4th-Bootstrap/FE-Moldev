@@ -17,9 +17,9 @@ const SideBar = () => {
   }, []);
 
   return (
-    <div className="flex w-1/3 h-full items-start justify-start ">
+    <div className="flex w-1/3 h-full items-start justify-start shadow-right">
       <SideButtonList isLogin={isLogin} setClicked={setClicked} />
-      <div className="grow h-full flex flex-col items-center justify-start py-16 px-24 sm:hidden md:hidden border-main border">
+      <div className="grow h-full flex flex-col items-center justify-start py-16 px-24 sm:hidden md:hidden">
         {isLogin ? (
           <>
             {clicked === 'list' && (

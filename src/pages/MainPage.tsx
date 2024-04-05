@@ -1,6 +1,6 @@
 import React from 'react';
 import SideBar from '../components/sidebar/SideBar';
-import IslandContainer from '../components/common/IslandContainer';
+import IslandContainer from '../components/islandContainer/IslandContainer';
 
 const MainPage = () => {
   return (

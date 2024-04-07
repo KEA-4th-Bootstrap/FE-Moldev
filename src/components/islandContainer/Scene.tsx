@@ -50,6 +50,10 @@ export const Model = (props: JSX.IntrinsicElements['group']) => {
     }, 1000);
   };
 
+  useEffect(() => {
+    document.body.style.cursor = itemHover ? 'pointer' : 'auto';
+  }, [itemHover]);
+
   return (
     <group ref={group as any} {...props} dispose={null}>
       <group name="Sketchfab_Scene" scale={0.2} castShadow receiveShadow>

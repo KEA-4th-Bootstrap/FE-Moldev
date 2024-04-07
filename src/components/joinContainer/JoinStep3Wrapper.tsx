@@ -9,7 +9,7 @@ const JoinStep3Wrapper = ({
   onClickNext: () => void;
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [imageSrc, setImageSrc] = useState<string | ArrayBuffer>('/img_empty_profile.png');
+  const [imageSrc, setImageSrc] = useState<string | ArrayBuffer>('/img/img_empty_profile.png');
 
   const onUpload = (e: any) => {
     const file = e.target.files[0];
@@ -18,7 +18,7 @@ const JoinStep3Wrapper = ({
 
     return new Promise((resolve) => {
       reader.onload = () => {
-        setImageSrc(reader.result || '/img_empty_profile.png');
+        setImageSrc(reader.result || '/img/img_empty_profile.png');
         resolve(reader.result);
       };
     });

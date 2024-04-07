@@ -7,11 +7,13 @@ Source: https://sketchfab.com/3d-models/treasure-island-446c38eec211410388ba09d3
 Title: treasure island
 */
 
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { Group, Mesh, SkinnedMesh } from 'three';
+import { useNavigate } from 'react-router';
 
 export const Model = (props: JSX.IntrinsicElements['group']) => {
+  const navigation = useNavigate();
   let canClick = true;
   const group = useRef<Group>();
   const { nodes, materials, animations } = useGLTF('/models/island2/scene.gltf');
@@ -349,6 +351,7 @@ export const Model = (props: JSX.IntrinsicElements['group']) => {
                   receiveShadow
                   onClick={() => {
                     handleClick('나무통');
+                    navigation('/list/project');
                   }}
                   onPointerOver={() => {
                     setItemHover(true);

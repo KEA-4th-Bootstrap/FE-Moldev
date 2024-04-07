@@ -1,4 +1,3 @@
-import React from 'react';
 import Login from '../../assets/icons/icon_login.svg?react';
 import Question from '../../assets/icons/icon_question.svg?react';
 import List from '../../assets/icons/icon_list.svg?react';
@@ -8,6 +7,7 @@ import Chatbot from '../../assets/icons/icon_chatbot.svg?react';
 import Person from '../../assets/icons/icon_person.svg?react';
 import Logo from '../../assets/logo/logo_icon.svg?react';
 import { SideType } from '../../data/type';
+import { useNavigate } from 'react-router';
 
 const SideButtonList = ({
   isLogin,
@@ -16,6 +16,8 @@ const SideButtonList = ({
   isLogin: boolean;
   setClicked: (clicked: SideType) => void;
 }) => {
+  const navigation = useNavigate();
+
   return (
     <div className="shrink-0 h-full px-16 py-30 flex flex-col justify-between items-center shadow-right">
       <div className="flex flex-col justify-start items-center gap-y-24">
@@ -54,8 +56,8 @@ const SideButtonList = ({
               width={28}
               height={28}
               onClick={() => {
-                setClicked('login');
                 console.log('login clicked');
+                navigation('/login');
               }}
             />
             <Question className="cursor-pointer hover:scale-110" width={28} height={28} />

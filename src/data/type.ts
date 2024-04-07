@@ -2,7 +2,18 @@ export type SideType = 'list' | 'search' | 'recommend' | 'chatbot' | 'logo' | 'l
 
 export type SearchType = 'article' | 'user';
 
-export type CategoryType = '대외활동' | '프로젝트' | '수상이력' | '트러블슈팅';
+export type CategoryType = 'activity' | 'project' | 'awards' | 'trouble';
+
+export type CategoryToKorType = '대외활동' | '프로젝트' | '수상이력' | '트러블슈팅';
+
+export const categoryEngToKor: {
+  [key in CategoryType]: CategoryToKorType;
+} = {
+  activity: '대외활동',
+  project: '프로젝트',
+  awards: '수상이력',
+  trouble: '트러블슈팅',
+};
 
 export type OrderType = 'new' | 'visit';
 
@@ -36,3 +47,7 @@ export type ChatMessageType = {
 };
 
 export type LoginContainerType = 'login' | 'join' | 'password';
+export interface ItemDimensions {
+  width: number;
+  height: number;
+}

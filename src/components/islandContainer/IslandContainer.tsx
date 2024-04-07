@@ -1,6 +1,6 @@
 import { OrbitControls } from '@react-three/drei';
 import { Canvas, useLoader } from '@react-three/fiber';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 // import IslandModel from './IslandModel';
 import { DirectionalLight, DoubleSide, Mesh, Object3D, TextureLoader } from 'three';
 import { Model } from './Scene';

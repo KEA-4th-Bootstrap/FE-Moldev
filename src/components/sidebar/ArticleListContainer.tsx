@@ -22,7 +22,7 @@ const ArticleListContainer = ({
         content: '내용1',
         createdAt: '2021-09-01',
         visit: 100,
-        category: '대외활동',
+        category: 'activity',
         img: 'https://source.unsplash.com/random/200x200',
       },
       {
@@ -31,7 +31,7 @@ const ArticleListContainer = ({
         content: '내용2',
         createdAt: '2021-09-02',
         visit: 200,
-        category: '프로젝트',
+        category: 'project',
         img: 'https://source.unsplash.com/random/200x200',
       },
       {
@@ -40,7 +40,7 @@ const ArticleListContainer = ({
         content: '내용3',
         createdAt: '2021-09-03',
         visit: 300,
-        category: '수상이력',
+        category: 'awards',
         img: 'https://source.unsplash.com/random/200x200',
       },
       {
@@ -49,7 +49,7 @@ const ArticleListContainer = ({
         content: '내용4',
         createdAt: '2021-09-04',
         visit: 400,
-        category: '트러블슈팅',
+        category: 'trouble',
         img: 'https://source.unsplash.com/random/200x200',
       },
     ]);

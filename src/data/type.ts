@@ -1,4 +1,4 @@
-export type SideType = 'list' | 'search' | 'recommend' | 'chatbot' | 'logo';
+export type SideType = 'list' | 'search' | 'recommend' | 'chatbot' | 'logo' | 'login';
 
 export type SearchType = 'article' | 'user';
 
@@ -34,3 +34,5 @@ export type ChatMessageType = {
   message: string;
   isUser: boolean;
 };
+
+export type LoginContainerType = 'login' | 'join' | 'password';

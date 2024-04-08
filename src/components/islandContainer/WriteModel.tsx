@@ -1,6 +1,6 @@
 import { useLoader, useThree } from '@react-three/fiber';
 import gsap from 'gsap';
-import React, { useCallback, useEffect, useLayoutEffect } from 'react';
+import { useCallback, useEffect, useLayoutEffect } from 'react';
 import { Mesh, Vector3 } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/Addons.js';
 

@@ -140,6 +140,7 @@ export default {
         inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
         none: 'none',
         right: '2px 0 2px 0 rgba(0, 0, 0, 0.05)',
+        bottom: '0 2px 2px 0 rgba(0, 0, 0, 0.2)',
       },
       screens: {
         xs: { max: '639px' },

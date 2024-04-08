@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import BlurBackgroundContainer from '../components/common/BlurBackgroundContainer';
-import { useNavigate, useParams } from 'react-router';
-import ListContainer from '../components/listPage/ListContainer';
+import { useNavigate } from 'react-router';
+// import WriteContainer from '../components/writePage/WriteContainer';
+import WriteContainer from '../components/writePage/WriteContainer';
 
-const ListPage = () => {
-  const { category } = useParams();
+const WritePage = () => {
   const navigation = useNavigate();
   const [isShow, setIsShow] = useState(false);
   const [childIsShow, setChildIsShow] = useState(false);
@@ -35,22 +35,10 @@ const ListPage = () => {
   };
 
   return (
-    <BlurBackgroundContainer isShow={isShow} onClick={handleBackgroundClick}>
-      <ListContainer
-        category={
-          category === 'activity'
-            ? 'activity'
-            : category === 'project'
-              ? 'project'
-              : category === 'awards'
-                ? 'awards'
-                : category === 'trouble'
-                  ? 'trouble'
-                  : 'activity'
-        }
-      />
+    <BlurBackgroundContainer isShow={isShow} onClick={() => {}}>
+      <WriteContainer onClose={handleBackgroundClick} />
     </BlurBackgroundContainer>
   );
 };
 
-export default ListPage;
+export default WritePage;

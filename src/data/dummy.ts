@@ -54,7 +54,7 @@ export const dummyProject: ArticleListItemType[] = [
     createdAt: '2021-08-06',
     visit: 600,
     category: 'project',
-    img: 'https://via.placeholder.com/150',
+    img: 'https://thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/f046/7f9f3898ea13cb6150a2b07b9a4c44caaa20e42c61e7b728e20f9fbe7da3.jpg',
   },
   {
     id: 7,

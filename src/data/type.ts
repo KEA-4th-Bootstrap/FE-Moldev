@@ -51,3 +51,8 @@ export interface ItemDimensions {
   width: number;
   height: number;
 }
+
+export interface postBoxType {
+  title: string;
+  content: string;
+}

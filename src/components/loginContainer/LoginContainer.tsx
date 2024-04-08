@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from '../../assets/logo/logo_text.svg?react';
 import FillButton from '../common/FillButton';
 import StrokeButton from '../common/StrokdButton';

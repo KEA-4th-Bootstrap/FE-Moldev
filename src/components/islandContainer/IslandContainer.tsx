@@ -6,6 +6,7 @@ import { DirectionalLight, DoubleSide, Mesh, Object3D, TextureLoader } from 'thr
 import { Model } from './Scene';
 import gsap from 'gsap';
 import WriteModel from './WriteModel';
+import { useNavigate } from 'react-router';
 
 const lightIntensity = 6.0;
 
@@ -95,6 +96,7 @@ const useGettingBallRef = () => {
 };
 
 const IslandContainer = () => {
+  const navigation = useNavigate();
   const [writeHover, setWriteHover] = useState(false);
   const [ballHover, setBallHover] = useState(false);
   const [ballRef] = useGettingBallRef();
@@ -198,6 +200,9 @@ const IslandContainer = () => {
           }}
           onPointerEnter={() => setWriteHover(true)}
           onPointerOut={() => setWriteHover(false)}
+          onClick={() => {
+            navigation('/write');
+          }}
         >
           <ambientLight intensity={5} color="#FFFFFF" />
           <WriteModel isHover={writeHover} />

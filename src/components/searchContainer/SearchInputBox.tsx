@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SearchType } from '../../data/type';
 import Search from '../../assets/icons/icon_search_box.svg?react';
 import Down from '../../assets/icons/icon_arrow_down.svg?react';

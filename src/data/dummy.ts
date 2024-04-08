@@ -10,6 +10,7 @@ export const dummyProject: ArticleListItemType[] = [
     visit: 100,
     category: 'project',
     img: 'https://media.bunjang.co.kr/product/178099314_1_1644048789_w360.jpg',
+    userName: '김철수',
   },
   {
     id: 2,
@@ -19,6 +20,7 @@ export const dummyProject: ArticleListItemType[] = [
     visit: 200,
     category: 'project',
     img: 'https://d2gfz7wkiigkmv.cloudfront.net/pickin/2/1/2/pX6kgTynTN6n2XD0tqaLSQ',
+    userName: '김철수',
   },
   {
     id: 3,
@@ -28,6 +30,7 @@ export const dummyProject: ArticleListItemType[] = [
     visit: 300,
     category: 'project',
     img: 'https://pbs.twimg.com/media/FHILO2jaMAYi9Bz?format=jpg&name=large',
+    userName: '김철수',
   },
   {
     id: 4,
@@ -37,6 +40,7 @@ export const dummyProject: ArticleListItemType[] = [
     visit: 400,
     category: 'project',
     img: 'https://image.idus.com/image/files/603ee12d2bdd41e5ad00d6a8c9160f87.jpg',
+    userName: '김철수',
   },
   {
     id: 5,
@@ -46,6 +50,7 @@ export const dummyProject: ArticleListItemType[] = [
     visit: 500,
     category: 'project',
     img: 'https://thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/f046/7f9f3898ea13cb6150a2b07b9a4c44caaa20e42c61e7b728e20f9fbe7da3.jpg',
+    userName: '김철수',
   },
   {
     id: 6,
@@ -55,6 +60,7 @@ export const dummyProject: ArticleListItemType[] = [
     visit: 600,
     category: 'project',
     img: 'https://thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/f046/7f9f3898ea13cb6150a2b07b9a4c44caaa20e42c61e7b728e20f9fbe7da3.jpg',
+    userName: '김철수',
   },
   {
     id: 7,
@@ -64,6 +70,7 @@ export const dummyProject: ArticleListItemType[] = [
     visit: 700,
     category: 'project',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 8,
@@ -73,6 +80,7 @@ export const dummyProject: ArticleListItemType[] = [
     visit: 800,
     category: 'project',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 9,
@@ -82,6 +90,7 @@ export const dummyProject: ArticleListItemType[] = [
     visit: 900,
     category: 'project',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 10,
@@ -91,6 +100,7 @@ export const dummyProject: ArticleListItemType[] = [
     visit: 1000,
     category: 'project',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
 ];
 
@@ -103,6 +113,7 @@ export const dummyActivity: ArticleListItemType[] = [
     visit: 100,
     category: 'activity',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 2,
@@ -112,6 +123,7 @@ export const dummyActivity: ArticleListItemType[] = [
     visit: 200,
     category: 'activity',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 3,
@@ -121,6 +133,7 @@ export const dummyActivity: ArticleListItemType[] = [
     visit: 300,
     category: 'activity',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 4,
@@ -130,6 +143,7 @@ export const dummyActivity: ArticleListItemType[] = [
     visit: 400,
     category: 'activity',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 5,
@@ -139,6 +153,7 @@ export const dummyActivity: ArticleListItemType[] = [
     visit: 500,
     category: 'activity',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 6,
@@ -148,6 +163,7 @@ export const dummyActivity: ArticleListItemType[] = [
     visit: 600,
     category: 'activity',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 7,
@@ -157,6 +173,7 @@ export const dummyActivity: ArticleListItemType[] = [
     visit: 700,
     category: 'activity',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
 ];
 
@@ -169,6 +186,7 @@ export const dummyAwards: ArticleListItemType[] = [
     visit: 100,
     category: 'awards',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 2,
@@ -178,6 +196,7 @@ export const dummyAwards: ArticleListItemType[] = [
     visit: 200,
     category: 'awards',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 3,
@@ -187,6 +206,7 @@ export const dummyAwards: ArticleListItemType[] = [
     visit: 300,
     category: 'awards',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 4,
@@ -196,6 +216,7 @@ export const dummyAwards: ArticleListItemType[] = [
     visit: 400,
     category: 'awards',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 5,
@@ -205,6 +226,7 @@ export const dummyAwards: ArticleListItemType[] = [
     visit: 500,
     category: 'awards',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 6,
@@ -214,6 +236,7 @@ export const dummyAwards: ArticleListItemType[] = [
     visit: 600,
     category: 'awards',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 7,
@@ -223,6 +246,7 @@ export const dummyAwards: ArticleListItemType[] = [
     visit: 700,
     category: 'awards',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
 ];
 
@@ -235,6 +259,7 @@ export const dummyTrouble: ArticleListItemType[] = [
     visit: 100,
     category: 'trouble',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 2,
@@ -244,6 +269,7 @@ export const dummyTrouble: ArticleListItemType[] = [
     visit: 200,
     category: 'trouble',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 3,
@@ -253,6 +279,7 @@ export const dummyTrouble: ArticleListItemType[] = [
     visit: 300,
     category: 'trouble',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 4,
@@ -262,6 +289,7 @@ export const dummyTrouble: ArticleListItemType[] = [
     visit: 400,
     category: 'trouble',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 5,
@@ -271,6 +299,7 @@ export const dummyTrouble: ArticleListItemType[] = [
     visit: 500,
     category: 'trouble',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 6,
@@ -280,6 +309,7 @@ export const dummyTrouble: ArticleListItemType[] = [
     visit: 600,
     category: 'trouble',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
   {
     id: 7,
@@ -289,5 +319,35 @@ export const dummyTrouble: ArticleListItemType[] = [
     visit: 700,
     category: 'trouble',
     img: 'https://via.placeholder.com/150',
+    userName: '김철수',
   },
 ];
+
+export const dummyArticle: ArticleListItemType = {
+  id: 1,
+  title: '아티클1',
+  content: `가나다라마바사
+  # 헤더 1
+  ## 헤더 2
+  ### 헤더 *3*가나다라마바사
+  # 헤더 1
+  ## 헤더 2
+  ### 헤더 *3*가나다라마바사
+  # 헤더 1
+  ## 헤더 2
+  ### 헤더 *3*가나다라마바사
+  # 헤더 1
+  ## 헤더 2
+  ### 헤더 *3*가나다라마바사
+  # 헤더 1
+  ## 헤더 2
+  ### 헤더 *3*가나다라마바사
+  # 헤더 1
+  ## 헤더 2
+  ### 헤더 *3*`,
+  createdAt: '2021-08-01',
+  visit: 100,
+  category: 'activity',
+  img: 'https://via.placeholder.com/150',
+  userName: '복복복',
+};

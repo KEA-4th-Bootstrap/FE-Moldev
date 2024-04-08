@@ -4,6 +4,7 @@ import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import ListPage from './pages/ListPage';
 import WritePage from './pages/WritePage';
+import ArticlePage from './pages/ArticlePage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="login" element={<LoginPage />} />
           <Route path="list/:category" element={<ListPage />} />
           <Route path="write" element={<WritePage />} />
+          <Route path="article/:articleId" element={<ArticlePage />} />
         </Route>
       </Routes>
     </Router>

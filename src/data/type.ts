@@ -38,6 +38,7 @@ export type ArticleListItemType = {
   visit: number;
   category: CategoryType;
   img: string;
+  userName: string;
 };
 
 export type ChatMessageType = {

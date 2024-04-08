@@ -148,3 +148,14 @@ button:focus-visible {
   justify-content: flex-start;
   align-items: center;
 }
+
+.wmde-markdown {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  overflow-y: scroll;
+  font-family: 'Pretendard', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}

@@ -24,6 +24,7 @@ const ArticleListContainer = ({
         visit: 100,
         category: 'activity',
         img: 'https://source.unsplash.com/random/200x200',
+        userName: '김철수',
       },
       {
         id: 2,
@@ -33,6 +34,7 @@ const ArticleListContainer = ({
         visit: 200,
         category: 'project',
         img: 'https://source.unsplash.com/random/200x200',
+        userName: '김철수',
       },
       {
         id: 3,
@@ -42,6 +44,7 @@ const ArticleListContainer = ({
         visit: 300,
         category: 'awards',
         img: 'https://source.unsplash.com/random/200x200',
+        userName: '김철수',
       },
       {
         id: 4,
@@ -51,6 +54,7 @@ const ArticleListContainer = ({
         visit: 400,
         category: 'trouble',
         img: 'https://source.unsplash.com/random/200x200',
+        userName: '김철수',
       },
     ]);
   }, []);

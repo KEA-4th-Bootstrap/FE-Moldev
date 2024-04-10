@@ -83,7 +83,7 @@ const WriteContainer = ({ onClose }: { onClose: () => void }) => {
   return (
     <>
       <div
-        className="w-4/5 h-5/6 flex flex-col items-center justify-start rounded-modal bg-white shadow-md relative"
+        className="w-4/5 h-[90%] flex flex-col items-center justify-start rounded-modal bg-white shadow-md relative"
         onClick={(e) => {
           e.stopPropagation();
         }}

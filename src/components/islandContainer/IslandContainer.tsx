@@ -1,12 +1,14 @@
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, Text3D } from '@react-three/drei';
 import { Canvas, useLoader } from '@react-three/fiber';
 import { useCallback, useEffect, useState } from 'react';
 // import IslandModel from './IslandModel';
 import { DirectionalLight, DoubleSide, Mesh, Object3D, TextureLoader } from 'three';
-import { Model } from './Scene';
+import { IslandModel } from './IslandModel';
 import gsap from 'gsap';
 import WriteModel from './WriteModel';
 import { useNavigate } from 'react-router';
+import { TrophyModel } from './TrophyModel';
+import { GunModel } from './GunModel';
 
 const lightIntensity = 6.0;
 
@@ -54,23 +56,15 @@ const useGettingShadowRef = () => {
 const useGettingBallRef = () => {
   const ballRef = useCallback((node: Mesh) => {
     if (node !== null) {
-      gsap.fromTo(
-        node.position,
-        {
-          x: -8,
-          y: 0,
-          z: 8,
-        },
-        {
-          x: -10,
-          y: 2,
-          z: 8,
-          duration: 10,
-          repeat: -1,
-          yoyo: true,
-          ease: 'power1.inOut',
-        },
-      );
+      gsap.to(node.position, {
+        x: -10,
+        y: 2,
+        z: 8,
+        duration: 10,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+      });
 
       gsap.fromTo(
         node.rotation,
@@ -95,18 +89,124 @@ const useGettingBallRef = () => {
   return [ballRef];
 };
 
+const usePrizeTextRef = () => {
+  const ref = useCallback((node: Mesh) => {
+    if (node !== null) {
+      gsap.to(node.position, {
+        x: -1,
+        z: 13,
+        duration: 10,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+      });
+      gsap.to(node.position, {
+        y: 5,
+        duration: 1,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+      });
+    }
+  }, []);
+
+  return [ref];
+};
+
+const useTroubleTextRef = () => {
+  const ref = useCallback((node: Mesh) => {
+    if (node !== null) {
+      gsap.to(node.position, {
+        x: -10,
+        z: 2,
+        duration: 10,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+      });
+      gsap.to(node.position, {
+        y: 8,
+        duration: 1,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+      });
+    }
+  }, []);
+
+  return [ref];
+};
+
+const useProjectTextRef = () => {
+  const ref = useCallback((node: Mesh) => {
+    if (node !== null) {
+      gsap.to(node.position, {
+        x: 9,
+        z: 6,
+        duration: 10,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+      });
+      gsap.to(node.position, {
+        y: 4.5,
+        duration: 1,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+      });
+    }
+  }, []);
+
+  return [ref];
+};
+
+const useActivityRef = () => {
+  const ref = useCallback((node: Mesh) => {
+    if (node !== null) {
+      gsap.to(node.position, {
+        x: -12,
+        z: 8,
+        duration: 10,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+      });
+      gsap.to(node.position, {
+        y: 6.5,
+        duration: 1,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+      });
+    }
+  }, []);
+
+  return [ref];
+};
+
 const IslandContainer = () => {
   const navigation = useNavigate();
   const [writeHover, setWriteHover] = useState(false);
-  const [ballHover, setBallHover] = useState(false);
+  // const [ballHover, setBallHover] = useState(false);
   const [ballRef] = useGettingBallRef();
   const [shadowLightRef] = useGettingShadowRef();
   const [shadowLightRef2] = useGettingShadowRef();
   const colorMap = useLoader(TextureLoader, '/models/beachball/textures/ball_texture.jpg');
+  const textMap = useLoader(TextureLoader, '/text/gradient.jpeg');
+
+  const [prizeTextRef] = usePrizeTextRef();
+  const [troubleTextRef] = useTroubleTextRef();
+  const [projectTextRef] = useProjectTextRef();
+  const [activityTextRef] = useActivityRef();
+  const [prizeHover, setPrizeHover] = useState(false);
+  const [projectHover, setProjectHover] = useState(false);
+  const [activityHover, setActivityHover] = useState(false);
+  const [troubleHover, setTroubleHover] = useState(false);
 
   useEffect(() => {
-    document.body.style.cursor = ballHover ? 'pointer' : 'auto';
-  }, [ballHover]);
+    document.body.style.cursor = activityHover ? 'pointer' : 'auto';
+  }, [activityHover]);
 
   return (
     <div className="grow h-full flex items-center justify-center relative">
@@ -174,20 +274,65 @@ const IslandContainer = () => {
           <meshStandardMaterial color={'white'} side={DoubleSide} />
         </mesh>
         {/* 섬 모델 */}
-        <Model />
-        {/* 섬 위에 띄운 공 */}
+        <IslandModel setHover={setProjectHover} isHover={projectHover} />
+        <Text3D
+          ref={projectTextRef}
+          scale={0.7}
+          position={[8, 4, 8]}
+          font={'/text/pretendard_semibold.json'}
+          visible={projectHover}
+        >
+          프로젝트
+          <meshStandardMaterial map={textMap} side={DoubleSide} />
+        </Text3D>
+        {/* prize 모델 */}
+        <TrophyModel setHover={setPrizeHover} isHover={prizeHover} />
+        <Text3D
+          ref={prizeTextRef}
+          scale={0.7}
+          position={[-3, 4.5, 10]}
+          font={'/text/pretendard_semibold.json'}
+          visible={prizeHover}
+        >
+          수상이력
+          <meshStandardMaterial map={textMap} side={DoubleSide} />
+        </Text3D>
+        {/* trouble shooting 모델 */}
+        <GunModel setHover={setTroubleHover} isHover={troubleHover} />
+        <Text3D
+          ref={troubleTextRef}
+          scale={0.7}
+          position={[-12, 7.5, 0]}
+          font={'/text/pretendard_semibold.json'}
+          visible={troubleHover}
+        >
+          트러블슈팅
+          <meshStandardMaterial map={textMap} side={DoubleSide} />
+        </Text3D>
+        {/* 섬 위에 띄운 공 : 대외활동 */}
         <mesh
           position={[-8, 0, 8]}
           receiveShadow
           castShadow
           ref={ballRef}
-          scale={ballHover ? 1.2 : 1}
-          onPointerEnter={() => setBallHover(true)}
-          onPointerOut={() => setBallHover(false)}
+          scale={activityHover ? 1.2 : 1}
+          onPointerEnter={() => setActivityHover(true)}
+          onPointerOut={() => setActivityHover(false)}
+          onClick={() => navigation('/list/activity')}
         >
           <sphereGeometry args={[2, 32, 32]} />
           <meshStandardMaterial map={colorMap} side={DoubleSide} />
         </mesh>
+        <Text3D
+          ref={activityTextRef}
+          scale={0.7}
+          position={[-10, 6, 8]}
+          font={'/text/pretendard_semibold.json'}
+          visible={activityHover}
+        >
+          대외활동
+          <meshStandardMaterial map={textMap} side={DoubleSide} />
+        </Text3D>
       </Canvas>
       <div className="absolute bottom-16 right-8 w-[200px] h-[210px] cursor-pointer">
         <Canvas

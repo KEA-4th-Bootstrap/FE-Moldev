@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import { ArticleListItemType } from '../../data/type';
 
 const ListItemContainer = ({
@@ -9,12 +10,15 @@ const ListItemContainer = ({
   width: number;
   height: number;
 }) => {
+  const navigation = useNavigate();
+
   return (
     <div
       style={{ width: width, height: height }}
       className={`rounded-md flex flex-col items-start justify-center hover:border-white hover:border-4`}
       onClick={(e) => {
         e.stopPropagation();
+        navigation(`/article/${item.id}`);
       }}
     >
       <img className="w-full h-2/3 object-cover rounded-t-md" src={item.img} alt={item.title} />

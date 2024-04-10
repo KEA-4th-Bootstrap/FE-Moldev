@@ -13,7 +13,7 @@ const SideBar = () => {
   const islandNamd = '복복두더지';
 
   useEffect(() => {
-    setIsLogin(false);
+    setIsLogin(true);
   }, []);
 
   return (

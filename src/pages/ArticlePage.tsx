@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import BlurBackgroundContainer from '../components/common/BlurBackgroundContainer';
 import ArticleContainer from '../components/articlePage/ArticleContainer';

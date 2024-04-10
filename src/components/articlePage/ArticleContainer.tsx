@@ -35,7 +35,19 @@ const ArticleContainer = ({ articleId, onClose }: { articleId: number; onClose: 
                   {categoryEngToKor[article.category]}
                 </div>
               </div>
-              <Close className="cursor-pointer" onClick={onClose} />
+              <div className="flex items-center justify-end gap-x-16">
+                {article.isMine && (
+                  <>
+                    <button className="text-14 font-medium text-gray-700 px-24 outline-none border-none focus:outline-none focus:border-none active:outline-none active:border-none hover:text-white hover:bg-dark-300 transition-all ease-in-out duration-150">
+                      수정
+                    </button>
+                    <button className="text-14 font-medium text-gray-700 px-24 outline-none border-none focus:outline-none focus:border-none active:outline-none active:border-none hover:text-white hover:bg-dark-300 transition-all ease-in-out duration-150">
+                      삭제
+                    </button>
+                  </>
+                )}
+                <Close className="cursor-pointer" onClick={onClose} />
+              </div>
             </div>
             <div className="w-full items-center justify-start text-36 font-bold text-black">
               {article.title}

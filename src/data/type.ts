@@ -39,6 +39,7 @@ export type ArticleListItemType = {
   category: CategoryType;
   img: string;
   userName: string;
+  isMine: boolean;
 };
 
 export type ChatMessageType = {

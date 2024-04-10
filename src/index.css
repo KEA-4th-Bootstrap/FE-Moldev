@@ -15,6 +15,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 a {
@@ -74,4 +75,87 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.quill {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Pretendard', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.ql-toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: 'Pretendard', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.ql-container {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  overflow-y: hidden;
+  font-family: 'Pretendard', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.ql-editor {
+  width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  padding: 1em;
+  overflow-y: hidden;
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  resize: none;
+  overflow-y: scroll;
+  font-family: 'Pretendard', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.ql-editor p {
+  margin: 0;
+}
+
+.wmde-markdown ol {
+  list-style: null !important;
+}
+
+.wmde-markdown ul {
+  list-style: unset !important;
+}
+
+.w-md-editor-toolbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.wmde-markdown {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  overflow-y: visible;
+  font-family: 'Pretendard', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }

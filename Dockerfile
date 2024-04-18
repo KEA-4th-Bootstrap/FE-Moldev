@@ -9,8 +9,8 @@ RUN npm install
 # 현재 디렉토리의 모든 파일을 도커 컨테이너의 워킹 디렉토리에 복사한다.
 COPY . .
 
-# 5173번 포트 노출
-EXPOSE 5173
+# 3000번 포트 노출
+EXPOSE 3000
 
 # npm start 스크립트 실행
 CMD ["npm", "run", "dev"]

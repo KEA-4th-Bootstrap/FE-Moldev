@@ -2,9 +2,9 @@ export type SideType = 'list' | 'search' | 'recommend' | 'chatbot' | 'logo' | 'l
 
 export type SearchType = 'article' | 'user';
 
-export type CategoryType = 'activity' | 'project' | 'awards' | 'trouble';
+export type CategoryType = 'activity' | 'project' | 'awards' | 'trouble' | 'introduce';
 
-export type CategoryToKorType = '대외활동' | '프로젝트' | '수상이력' | '트러블슈팅';
+export type CategoryToKorType = '대외활동' | '프로젝트' | '수상이력' | '트러블슈팅' | '자기소개';
 
 export const categoryEngToKor: {
   [key in CategoryType]: CategoryToKorType;
@@ -13,6 +13,7 @@ export const categoryEngToKor: {
   project: '프로젝트',
   awards: '수상이력',
   trouble: '트러블슈팅',
+  introduce: '자기소개',
 };
 
 export type OrderType = 'new' | 'visit';

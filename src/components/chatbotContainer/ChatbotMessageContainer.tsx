@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ChatbotMessageContainer = ({ message }: { message: string }) => {
   return (
     <div className="w-full flex flex-col items-start justify-start">

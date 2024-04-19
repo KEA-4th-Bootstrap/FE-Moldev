@@ -1,5 +1,3 @@
-import React from 'react';
-
 const UserMessageContainer = ({ message }: { message: string }) => {
   return (
     <div className="w-full flex flex-col items-end justify-start">

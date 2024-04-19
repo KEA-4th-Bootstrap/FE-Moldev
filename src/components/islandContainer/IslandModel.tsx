@@ -709,4 +709,4 @@ export const IslandModel = (
   );
 };
 
-useGLTF.preload('/scene.gltf');
+useGLTF.preload('/models/island2/scene.gltf');

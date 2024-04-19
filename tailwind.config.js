@@ -191,6 +191,23 @@ export default {
         xl: { min: '1280px', max: '1535px' },
         '2xl': { min: '1536px' },
       },
+      keyframes: {
+        bounce: {
+          '0%, 100%': {
+            transform: 'translateY(0)',
+            animationTimingFunction: 'cubic-bezier(0,0,0.2,1)',
+            backgroundColor: '#FFFFFF',
+          },
+          '50%': {
+            transform: 'translateY(-25%)',
+            animationTimingFunction: 'cubic-bezier(0.8,0,1,1)',
+            backgroundColor: '#00A9FF',
+          },
+        },
+      },
+      animation: {
+        bounce: 'bounce 1s infinite',
+      },
     },
   },
   plugins: [import('tailwind-scrollbar-hide')],

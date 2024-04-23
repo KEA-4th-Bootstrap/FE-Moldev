@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Logo from '../../assets/logo/logo_text.svg?react';
 import JoinStep1Wrapper from './JoinStep1Wrapper';
 import JoinStep2Wrapper from './JoinStep2Wrapper';
@@ -19,11 +19,7 @@ const JoinStepsContainer = ({
   return (
     <div className="w-full flex flex-col items-center justify-center">
       {isComplete ? (
-        <JoinCompleteContainer
-          userName="복복두더지"
-          islandName="두더지도집이있나"
-          setIsShow={setIsShow}
-        />
+        <JoinCompleteContainer userName="부트스트랩" islandName="몰디브" setIsShow={setIsShow} />
       ) : (
         <>
           <div className="w-full flex items-center justify-between">

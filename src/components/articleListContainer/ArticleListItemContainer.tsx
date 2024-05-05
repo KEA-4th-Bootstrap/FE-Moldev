@@ -2,13 +2,19 @@ import { useNavigate } from 'react-router';
 import Pin from '../../assets/icons/icon_pin.svg?react';
 import { ArticleListItemType, categoryEngToKor } from '../../data/type';
 
-const ArticleListItemContainer = ({ item }: { item: ArticleListItemType }) => {
+const ArticleListItemContainer = ({
+  item,
+  moldevId,
+}: {
+  item: ArticleListItemType;
+  moldevId: string;
+}) => {
   const navigation = useNavigate();
 
   return (
     <div
       className="flex flex-col w-full items-start justify-center p-12 hover:bg-gray-100 rounded-lg"
-      onClick={() => navigation(`/article/${item.id}`)}
+      onClick={() => navigation(`/island/${moldevId}/${item.id}`)}
     >
       <div className="flex items-center justify-start gap-x-4">
         <Pin className="w-[13px] h-[13px]" />

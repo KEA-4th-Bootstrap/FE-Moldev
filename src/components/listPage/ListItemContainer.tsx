@@ -3,10 +3,12 @@ import { ArticleListItemType } from '../../data/type';
 
 const ListItemContainer = ({
   item,
+  moldevId,
   width,
   height,
 }: {
   item: ArticleListItemType;
+  moldevId: string;
   width: number;
   height: number;
 }) => {
@@ -18,7 +20,7 @@ const ListItemContainer = ({
       className={`rounded-md flex flex-col items-start justify-center hover:border-white hover:border-4`}
       onClick={(e) => {
         e.stopPropagation();
-        navigation(`/article/${item.id}`);
+        navigation(`/island/${moldevId}/article/${item.id}`);
       }}
     >
       <img className="w-full h-2/3 object-cover rounded-t-md" src={item.img} alt={item.title} />

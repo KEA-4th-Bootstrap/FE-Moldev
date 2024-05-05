@@ -3,14 +3,20 @@ import { ArticleListItemType, CategoryType, ItemDimensions } from '../../data/ty
 import { dummyActivity, dummyAwards, dummyProject, dummyTrouble } from '../../data/dummy';
 import ListItemContainer from './ListItemContainer';
 import { MissionControl } from './MissionControl';
+import { useParams } from 'react-router';
 
 const ListWrapper = ({ category }: { category: CategoryType }) => {
+  const { moldevId } = useParams();
   const [listItems, setListItems] = useState<ArticleListItemType[]>([]);
   const [currentIndex, setCurrentIndex] = useState(1);
   const outerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
   const [itemDimensions, setItemDimensions] = useState<ItemDimensions[][]>([]);
+
+  useEffect(() => {
+    console.log('list wrapper moldevId', moldevId);
+  }, [moldevId]);
 
   useEffect(() => {
     if (!outerRef.current) return;
@@ -62,6 +68,7 @@ const ListWrapper = ({ category }: { category: CategoryType }) => {
                 <ListItemContainer
                   key={item.id}
                   item={item}
+                  moldevId={moldevId || ''}
                   width={itemDimensions[0][index].width}
                   height={itemDimensions[0][index].height}
                 />
@@ -72,6 +79,7 @@ const ListWrapper = ({ category }: { category: CategoryType }) => {
                 <ListItemContainer
                   key={item.id}
                   item={item}
+                  moldevId={moldevId || ''}
                   width={itemDimensions[1][index].width}
                   height={itemDimensions[1][index].height}
                 />

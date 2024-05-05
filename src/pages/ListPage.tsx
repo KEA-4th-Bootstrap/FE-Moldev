@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 import ListContainer from '../components/listPage/ListContainer';
 
 const ListPage = () => {
-  const { category } = useParams();
+  const { moldevId, category } = useParams();
   const navigation = useNavigate();
   const [isShow, setIsShow] = useState(false);
   const [childIsShow, setChildIsShow] = useState(false);
@@ -26,7 +26,7 @@ const ListPage = () => {
     setChildIsShow(false);
 
     const timer = setTimeout(() => {
-      navigation('/');
+      navigation(`/island/${moldevId}`);
     }, 100);
 
     return () => {

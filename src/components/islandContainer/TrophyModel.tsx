@@ -49,7 +49,11 @@ const useGettingRef = () => {
 };
 
 export function TrophyModel(
-  props: JSX.IntrinsicElements['group'] & { setHover: (hover: boolean) => void; isHover: boolean },
+  props: JSX.IntrinsicElements['group'] & {
+    setHover: (hover: boolean) => void;
+    isHover: boolean;
+    moldevId: string;
+  },
 ) {
   const navigation = useNavigate();
   const [group] = useGettingRef();
@@ -63,7 +67,7 @@ export function TrophyModel(
       onPointerEnter={() => props.setHover(true)}
       onPointerOut={() => props.setHover(false)}
       scale={props.isHover ? 1.25 : 1}
-      onClick={() => navigation('/list/awards')}
+      onClick={() => navigation(`/island/${props.moldevId}/awards`)}
     >
       <mesh
         geometry={(nodes.Object_2 as Mesh).geometry}

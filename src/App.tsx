@@ -12,8 +12,10 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />}>
           <Route path="login" element={<LoginPage />} />
-          <Route path="list/:category" element={<ListPage />} />
+        </Route>
+        <Route path="/island/:moldevId" element={<MainPage />}>
           <Route path="write" element={<WritePage />} />
+          <Route path=":category" element={<ListPage />} />
           <Route path="article/:articleId" element={<ArticlePage />} />
         </Route>
       </Routes>

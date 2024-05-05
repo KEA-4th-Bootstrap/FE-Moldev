@@ -13,7 +13,11 @@ import { Group, Mesh, SkinnedMesh } from 'three';
 import { useNavigate } from 'react-router';
 
 export const IslandModel = (
-  props: JSX.IntrinsicElements['group'] & { setHover: (hover: boolean) => void; isHover: boolean },
+  props: JSX.IntrinsicElements['group'] & {
+    setHover: (hover: boolean) => void;
+    isHover: boolean;
+    moldevId: string;
+  },
 ) => {
   const navigation = useNavigate();
   let canClick = true;
@@ -348,7 +352,7 @@ export const IslandModel = (
                   receiveShadow
                   onClick={() => {
                     handleClick('나무통');
-                    navigation('/list/project');
+                    navigation(`/island/${props.moldevId}/project`);
                   }}
                   onPointerOver={() => {
                     props.setHover(true);

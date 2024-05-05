@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ArticleListDropDown from '../articleListContainer/ArticleListDropDown';
 import { ArticleListItemType, OrderType } from '../../data/type';
 import ArticleListItemContainer from '../articleListContainer/ArticleListItemContainer';
+import { useParams } from 'react-router';
 
 const ArticleListContainer = ({
   memberName,
@@ -10,6 +11,7 @@ const ArticleListContainer = ({
   memberName: string;
   islandName: string;
 }) => {
+  const { moldevId } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [current, setCurrent] = useState<OrderType>('new');
   const [articleList, setArticleList] = useState<ArticleListItemType[]>([]);
@@ -75,7 +77,7 @@ const ArticleListContainer = ({
       </div>
       <div className="w-full flex-col items-center justify-start">
         {articleList.map((item) => (
-          <ArticleListItemContainer key={item.id} item={item} />
+          <ArticleListItemContainer key={item.id} item={item} moldevId={moldevId || ''} />
         ))}
       </div>
     </div>

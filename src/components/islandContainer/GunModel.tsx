@@ -49,7 +49,11 @@ const useGettingRef = () => {
 };
 
 export function GunModel(
-  props: JSX.IntrinsicElements['group'] & { setHover: (hover: boolean) => void; isHover: boolean },
+  props: JSX.IntrinsicElements['group'] & {
+    setHover: (hover: boolean) => void;
+    isHover: boolean;
+    moldevId: string;
+  },
 ) {
   const navigation = useNavigate();
   const [group] = useGettingRef();
@@ -64,7 +68,7 @@ export function GunModel(
       onPointerOut={() => props.setHover(false)}
       position={[-10, 1, 0]}
       scale={props.isHover ? 7 : 6}
-      onClick={() => navigation('/list/trouble')}
+      onClick={() => navigation(`/island/${props.moldevId}/trouble`)}
     >
       <mesh
         geometry={(nodes.Object_4 as Mesh).geometry}

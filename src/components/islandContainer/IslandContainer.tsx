@@ -5,10 +5,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { DirectionalLight, DoubleSide, Mesh, Object3D, TextureLoader } from 'three';
 import { IslandModel } from './IslandModel';
 import gsap from 'gsap';
-import WriteModel from './WriteModel';
-import { useNavigate } from 'react-router';
+// import WriteModel from './WriteModel';
+import { useNavigate, useParams } from 'react-router';
 import { TrophyModel } from './TrophyModel';
 import { GunModel } from './GunModel';
+// import { HouseModel } from './HouseModel';
+import WriteModel from './WriteModel';
+import { HouseModel } from './HouseModel';
 
 const lightIntensity = 6.0;
 
@@ -187,6 +190,7 @@ const useActivityRef = () => {
 
 const IslandContainer = () => {
   const navigation = useNavigate();
+  const { moldevId } = useParams();
   const [writeHover, setWriteHover] = useState(false);
   // const [ballHover, setBallHover] = useState(false);
   const [ballRef] = useGettingBallRef();
@@ -207,6 +211,10 @@ const IslandContainer = () => {
   useEffect(() => {
     document.body.style.cursor = activityHover ? 'pointer' : 'auto';
   }, [activityHover]);
+
+  useEffect(() => {
+    console.log('params', moldevId);
+  }, [moldevId]);
 
   return (
     <div className="grow h-full flex items-center justify-center relative">
@@ -274,7 +282,7 @@ const IslandContainer = () => {
           <meshStandardMaterial color={'white'} side={DoubleSide} />
         </mesh>
         {/* 섬 모델 */}
-        <IslandModel setHover={setProjectHover} isHover={projectHover} />
+        <IslandModel setHover={setProjectHover} isHover={projectHover} moldevId={moldevId || ''} />
         <Text3D
           ref={projectTextRef}
           scale={0.7}
@@ -286,7 +294,7 @@ const IslandContainer = () => {
           <meshStandardMaterial map={textMap} side={DoubleSide} />
         </Text3D>
         {/* prize 모델 */}
-        <TrophyModel setHover={setPrizeHover} isHover={prizeHover} />
+        <TrophyModel setHover={setPrizeHover} isHover={prizeHover} moldevId={moldevId || ''} />
         <Text3D
           ref={prizeTextRef}
           scale={0.7}
@@ -298,7 +306,7 @@ const IslandContainer = () => {
           <meshStandardMaterial map={textMap} side={DoubleSide} />
         </Text3D>
         {/* trouble shooting 모델 */}
-        <GunModel setHover={setTroubleHover} isHover={troubleHover} />
+        <GunModel setHover={setTroubleHover} isHover={troubleHover} moldevId={moldevId || ''} />
         <Text3D
           ref={troubleTextRef}
           scale={0.7}
@@ -318,7 +326,7 @@ const IslandContainer = () => {
           scale={activityHover ? 1.2 : 1}
           onPointerEnter={() => setActivityHover(true)}
           onPointerOut={() => setActivityHover(false)}
-          onClick={() => navigation('/list/activity')}
+          onClick={() => navigation(`/island/${moldevId}/activity`)}
         >
           <sphereGeometry args={[2, 32, 32]} />
           <meshStandardMaterial map={colorMap} side={DoubleSide} />
@@ -346,11 +354,15 @@ const IslandContainer = () => {
           onPointerEnter={() => setWriteHover(true)}
           onPointerOut={() => setWriteHover(false)}
           onClick={() => {
-            navigation('/write');
+            navigation(`/island/${moldevId}/write`);
           }}
         >
           <ambientLight intensity={5} color="#FFFFFF" />
-          <WriteModel isHover={writeHover} />
+          {moldevId !== undefined && moldevId === '1' ? (
+            <WriteModel isHover={writeHover} />
+          ) : (
+            <HouseModel isHover={writeHover} />
+          )}
         </Canvas>
       </div>
     </div>

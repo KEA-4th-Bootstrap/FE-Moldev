@@ -20,13 +20,17 @@ const ArticlePage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    console.log('articleId', articleId);
+  }, [articleId]);
+
   const handleBackgroundClick = () => {
     if (!childIsShow) return;
 
     setChildIsShow(false);
 
     const timer = setTimeout(() => {
-      navigation('/');
+      navigation(-1);
     }, 100);
 
     return () => {

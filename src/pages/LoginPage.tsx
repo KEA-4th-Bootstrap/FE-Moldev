@@ -22,7 +22,7 @@ const LoginPage = () => {
   useEffect(() => {
     if (!childIsShow) {
       const timer = setTimeout(() => {
-        navigation('/');
+        navigation(-1);
       }, 300);
 
       return () => {

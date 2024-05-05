@@ -26,7 +26,7 @@ const WritePage = () => {
     setChildIsShow(false);
 
     const timer = setTimeout(() => {
-      navigation('/');
+      navigation(-1);
     }, 100);
 
     return () => {

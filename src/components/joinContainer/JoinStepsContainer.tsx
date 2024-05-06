@@ -1,24 +1,24 @@
-import { useState } from 'react';
 import Logo from '../../assets/logo/logo_text.svg?react';
 import JoinStep1Wrapper from './JoinStep1Wrapper';
 import JoinStep2Wrapper from './JoinStep2Wrapper';
 import JoinStep3Wrapper from './JoinStep3Wrapper';
 import JoinCompleteContainer from './JoinCompleteContainer';
+import useSteps from '../../hooks/join/useSteps';
+import useJoin from '../../hooks/join/useJoin';
 
 const JoinStepsContainer = ({
-  isComplete,
-  setIsComplete,
   setIsShow,
+  isMarketingSelected,
 }: {
-  isComplete: boolean;
-  setIsComplete: (complete: boolean) => void;
   setIsShow: (item: boolean) => void;
+  isMarketingSelected: boolean;
 }) => {
-  const [step, setStep] = useState(1);
+  const { step, next } = useSteps();
+  const hookReturn = useJoin(isMarketingSelected);
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      {isComplete ? (
+      {hookReturn.isComplete ? (
         <JoinCompleteContainer userName="부트스트랩" islandName="몰디브" setIsShow={setIsShow} />
       ) : (
         <>
@@ -42,13 +42,14 @@ const JoinStepsContainer = ({
               </div>
             </div>
           </div>
-          <div className="w-full flex flex-col justify-start items-center py-24">
-            {step === 1 && <JoinStep1Wrapper onClickNext={() => setStep(2)} />}
-            {step === 2 && <JoinStep2Wrapper onClickNext={() => setStep(3)} />}
-            {step === 3 && (
-              <JoinStep3Wrapper userName="복복두더지" onClickNext={() => setIsComplete(true)} />
-            )}
-          </div>
+          <form
+            onSubmit={hookReturn.onSubmit}
+            className="w-full flex flex-col justify-start items-center py-24"
+          >
+            {step === 1 && <JoinStep1Wrapper onClickNext={next} hookReturn={hookReturn} />}
+            {step === 2 && <JoinStep2Wrapper onClickNext={next} hookReturn={hookReturn} />}
+            {step === 3 && <JoinStep3Wrapper hookReturn={hookReturn} />}
+          </form>
         </>
       )}
     </div>

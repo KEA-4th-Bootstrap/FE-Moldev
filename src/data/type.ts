@@ -57,3 +57,23 @@ export interface postBoxType {
   title: string;
   content: string;
 }
+
+export type joinType = {
+  isMarketing: boolean;
+  email: string;
+  password: string;
+  moldevId: string;
+  userName: string;
+  islandName: string;
+  profileImage: string | ArrayBuffer;
+};
+
+export const initialJoinForm: joinType = {
+  isMarketing: false,
+  email: '',
+  password: '',
+  moldevId: '',
+  userName: '',
+  islandName: '',
+  profileImage: '',
+};

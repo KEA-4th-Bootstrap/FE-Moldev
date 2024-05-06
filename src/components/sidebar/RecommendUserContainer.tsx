@@ -1,54 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { RecommendUserType } from '../../data/type';
 import SearchUserResultContainer from '../searchContainer/SearchUserResultContainer';
+import useRecommendUser from '../../hooks/sidebar/recommend/useRecommendUser';
 
 const RecommendUserContainer = ({ memberName }: { memberName: string }) => {
-  const [recommendList, setRecommendList] = useState<RecommendUserType[]>([]);
-
-  useEffect(() => {
-    setRecommendList([
-      {
-        percentage: 90,
-        user: {
-          img: 'https://source.unsplash.com/random/200x200',
-          name: '유저1',
-          introduce: '복복복복복복복두더지입니다어쩌구저쩌구저쩌구',
-          visit: 100,
-          updated: '2021-09-01',
-        },
-      },
-      {
-        percentage: 80,
-        user: {
-          img: 'https://source.unsplash.com/random/200x200',
-          name: '유저2',
-          introduce: '복복복복복복복두더지입니다어쩌구저쩌구저쩌구',
-          visit: 200,
-          updated: '2021-09-02',
-        },
-      },
-      {
-        percentage: 70,
-        user: {
-          img: 'https://source.unsplash.com/random/200x200',
-          name: '유저3',
-          introduce: '복복복복복복복두더지입니다어쩌구저쩌구저쩌구',
-          visit: 300,
-          updated: '2021-09-03',
-        },
-      },
-      {
-        percentage: 60,
-        user: {
-          img: 'https://source.unsplash.com/random/200x200',
-          name: '유저4',
-          introduce: '복복복복복복복두더지입니다어쩌구저쩌구저쩌구',
-          visit: 400,
-          updated: '2021-09-04',
-        },
-      },
-    ]);
-  }, []);
+  const { recommendList } = useRecommendUser();
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-start gap-y-30">

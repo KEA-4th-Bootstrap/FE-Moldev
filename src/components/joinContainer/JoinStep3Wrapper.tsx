@@ -1,34 +1,9 @@
-import React, { useCallback, useRef, useState } from 'react';
 import Edit from '../../assets/icons/icon_edit.svg?react';
+import useJoin from '../../hooks/join/useJoin';
 
-const JoinStep3Wrapper = ({
-  userName,
-  onClickNext,
-}: {
-  userName: string;
-  onClickNext: () => void;
-}) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [imageSrc, setImageSrc] = useState<string | ArrayBuffer>('/img/img_empty_profile.png');
-
-  const onUpload = (e: any) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setImageSrc(reader.result || '/img/img_empty_profile.png');
-        resolve(reader.result);
-      };
-    });
-  };
-
-  const onUploadImageButtonClick = useCallback(() => {
-    if (inputRef.current) {
-      inputRef.current.click();
-    }
-  }, []);
+const JoinStep3Wrapper = ({ hookReturn }: { hookReturn: ReturnType<typeof useJoin> }) => {
+  const { form, inputRef, onUpload, onUploadImageButtonClick } = hookReturn;
+  const { userName, profileImage } = form;
 
   return (
     <div className="w-full flex flex-col items-center justify-start gap-y-40 py-16 px-8">
@@ -39,7 +14,7 @@ const JoinStep3Wrapper = ({
       <div className="flex items-center justify-center relative">
         <img
           className="w-[200px] h-[200px] object-cover rounded-full"
-          src={imageSrc as string}
+          src={profileImage as string}
           alt="empty"
         />
         <Edit
@@ -53,7 +28,7 @@ const JoinStep3Wrapper = ({
           나중에 할래요
         </div>
         <button
-          onClick={onClickNext}
+          type="submit"
           className="flex items-center justify-center rounded-button bg-main py-8 px-20 font-semibold text-18 text-white border-none outline-none active:border-none active:outline-none focus:border-none focus:outline-none hover:border-none hover:outline-none"
         >
           완료

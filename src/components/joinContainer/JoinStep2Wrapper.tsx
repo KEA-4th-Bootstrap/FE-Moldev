@@ -1,11 +1,15 @@
-import { useState } from 'react';
 import FillButton from '../common/FillButton';
+import useJoin from '../../hooks/join/useJoin';
 
-const JoinStep2Wrapper = ({ onClickNext }: { onClickNext: () => void }) => {
-  const [molDevId, setMolDevId] = useState('');
-  const [userName, setUserName] = useState('');
-  const [islandName, setIslandName] = useState('');
-  const [checkName, setCheckName] = useState(false);
+const JoinStep2Wrapper = ({
+  onClickNext,
+  hookReturn,
+}: {
+  onClickNext: () => void;
+  hookReturn: ReturnType<typeof useJoin>;
+}) => {
+  const { form, checkName, onChange, setCheckName, checkNameIsAbleToConfirm } = hookReturn;
+  const { moldevId, userName, islandName } = form;
 
   return (
     <>
@@ -17,12 +21,14 @@ const JoinStep2Wrapper = ({ onClickNext }: { onClickNext: () => void }) => {
           <div className="w-full flex items-center justify-center">
             <input
               className="grow flex items-center justify-start p-8 outline-none border-none"
-              value={molDevId}
-              onChange={(e) => setMolDevId(e.target.value)}
+              value={moldevId}
+              onChange={onChange}
+              name="moldevId"
             />
             <button
+              type="button"
               className="flex items-center justify-center rounded-button bg-main py-8 px-14 text-14 text-white border-none outline-none active:border-none active:outline-none focus:border-none focus:outline-none hover:border-none hover:outline-none disabled:bg-gray-100 transition-all duration-200 ease-in-out"
-              disabled={!(molDevId.length > 0)}
+              disabled={!checkNameIsAbleToConfirm()}
               onClick={() => setCheckName(true)}
             >
               중복 확인
@@ -42,7 +48,8 @@ const JoinStep2Wrapper = ({ onClickNext }: { onClickNext: () => void }) => {
           <input
             className="w-full flex items-center justify-start p-8 outline-none border-none "
             value={userName}
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={onChange}
+            name="userName"
           />
           <div className="w-full h-px bg-gray-200" />
         </div>
@@ -53,12 +60,13 @@ const JoinStep2Wrapper = ({ onClickNext }: { onClickNext: () => void }) => {
           <input
             className="w-full flex items-center justify-start p-8 outline-none border-none"
             value={islandName}
-            onChange={(e) => setIslandName(e.target.value)}
+            onChange={onChange}
+            name="islandName"
           />
           <div className="w-full h-px bg-gray-200" />
         </div>
       </div>
-      <FillButton text="다음" onClick={onClickNext} isAble={true} />
+      <FillButton type="button" text="다음" onClick={onClickNext} isAble={true} />
     </>
   );
 };

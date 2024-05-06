@@ -1,44 +1,12 @@
-import { useEffect, useState } from 'react';
-import { ChatMessageType } from '../../data/type';
 import UserMessageContainer from '../chatbotContainer/UserMessageContainer';
 import ChatbotMessageContainer from '../chatbotContainer/ChatbotMessageContainer';
 import Send from '../../assets/icons/icon_send.svg?react';
-import { getChatbotAnswerApi } from '../../api/chatbotApi';
-import { useQuery } from 'react-query';
 import ChatbotLoadingContainer from '../chatbotContainer/ChatbotLoadingContainer';
+import useChatbot from '../../hooks/sidebar/chatbot/useChatbot';
 
 const ChatbotContainer = ({ memberName }: { memberName: string }) => {
-  const [messages, setMessages] = useState<ChatMessageType[]>([]);
-  const [inputMessage, setInputMessage] = useState<string>('');
-  const { data, isLoading, isFetching, error, refetch } = useQuery(
-    'chatbotAnswer',
-    () => getChatbotAnswerApi(inputMessage, 99),
-    {
-      enabled: false,
-      onSuccess: (data) => {
-        setMessages((prev) => [
-          ...prev,
-          { id: prev.length + 1, message: data.data.message, isUser: false },
-        ]);
-      },
-    },
-  );
-
-  const handleSendMessage = async () => {
-    setMessages((prev) => [...prev, { id: prev.length + 1, message: inputMessage, isUser: true }]);
-    setInputMessage('');
-    refetch();
-  };
-
-  useEffect(() => {
-    console.log('Check API Response');
-    console.log(data);
-    console.log(isLoading);
-    console.log(error);
-    // if (data) {
-    //   setMessages((prev) => [...prev, { id: prev.length + 1, message: data.data, isUser: false }]);
-    // }
-  }, [data, isLoading, error]);
+  const { messages, inputMessage, setInputMessage, handleSendMessage, isLoading, isFetching } =
+    useChatbot(99);
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-start gap-y-30">

@@ -1,9 +1,9 @@
 import { CategoryType, categoryEngToKor } from '../../data/type';
 import ListWrapper from './ListWrapper';
 
-const ListContainer = ({ category }: { category: CategoryType }) => {
+const ListContainer = ({ isShow, category }: { isShow: boolean; category: CategoryType }) => {
   return (
-    <div className="w-full min-h-screen h-full flex flex-col items-center justify-center py-70">
+    <div className={`w-full min-h-screen h-full flex flex-col items-center justify-center py-70`}>
       <div
         className="shrink-0 pb-24 px-[150px] flex flex-col items-center justify-center border-b-2 border-white"
         onClick={(e) => {
@@ -12,7 +12,7 @@ const ListContainer = ({ category }: { category: CategoryType }) => {
       >
         <div className="text-white font-bold text-36">{categoryEngToKor[category]}</div>
       </div>
-      <ListWrapper category={category} />
+      <ListWrapper category={category} isShow={isShow} />
     </div>
   );
 };

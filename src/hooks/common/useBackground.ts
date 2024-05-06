@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
-const useLoginPage = () => {
+const useBackground = (url: string) => {
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState(false);
   const [childIsShow, setChildIsShow] = useState(false);
@@ -18,14 +18,14 @@ const useLoginPage = () => {
   useEffect(() => {
     if (!childIsShow) {
       const timer = setTimeout(() => {
-        navigate('/');
+        navigate(url);
       }, 300);
 
       return () => clearTimeout(timer);
     }
-  }, [childIsShow, navigate]);
+  }, [childIsShow, navigate, url]);
 
   return { isShow, childIsShow, setChildIsShow };
 };
 
-export default useLoginPage;
+export default useBackground;

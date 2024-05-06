@@ -1,65 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
-import { ArticleListItemType, CategoryType, ItemDimensions } from '../../data/type';
-import { dummyActivity, dummyAwards, dummyProject, dummyTrouble } from '../../data/dummy';
+import { CategoryType } from '../../data/type';
+import useListWrapper from '../../hooks/list/useListWrapper';
 import ListItemContainer from './ListItemContainer';
-import { MissionControl } from './MissionControl';
-import { useParams } from 'react-router';
 
-const ListWrapper = ({ category }: { category: CategoryType }) => {
-  const { moldevId } = useParams();
-  const [listItems, setListItems] = useState<ArticleListItemType[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(1);
-  const outerRef = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
-  const [itemDimensions, setItemDimensions] = useState<ItemDimensions[][]>([]);
-
-  useEffect(() => {
-    console.log('list wrapper moldevId', moldevId);
-  }, [moldevId]);
-
-  useEffect(() => {
-    if (!outerRef.current) return;
-    // outerRef size
-    const { width, height } = outerRef.current.getBoundingClientRect();
-    console.log('outerRef', outerRef.current.className);
-    console.log('outerRef', width, height);
-    setWidth(width);
-    setHeight(height);
-  }, [outerRef, outerRef.current?.onresize]);
-
-  useEffect(() => {
-    if (!width || !height) return;
-
-    const itemDimensions = MissionControl(width, height, 5, 32);
-    console.log('itemDimensions', itemDimensions);
-    setItemDimensions(itemDimensions);
-  }, [width, height, listItems]);
-
-  useEffect(() => {
-    switch (category) {
-      case 'activity':
-        setListItems(dummyActivity);
-        break;
-      case 'project':
-        setListItems(dummyProject);
-        break;
-      case 'awards':
-        setListItems(dummyAwards);
-        break;
-      case 'trouble':
-        setListItems(dummyTrouble);
-        break;
-      default:
-        setListItems([]);
-    }
-  }, [category]);
+const ListWrapper = ({ category, isShow }: { category: CategoryType; isShow: boolean }) => {
+  const { listItems, currentIndex, setCurrentIndex, outerRef, itemDimensions, moldevId } =
+    useListWrapper(category);
 
   return (
     <div className="w-full grow flex flex-col justify-center items-center">
       <div
         ref={outerRef}
-        className="w-2/3 grow flex flex-col items-center justify-center gap-y-30 py-80"
+        className={`w-2/3 grow flex flex-col items-center justify-center gap-y-30 py-80 ${isShow ? 'translate-y-0' : 'translate-y-[200%]'} transition-all duration-150`}
       >
         {listItems.length > 0 && itemDimensions.length > 0 && (
           <>

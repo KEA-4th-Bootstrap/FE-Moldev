@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router';
 import { ArticleListItemType } from '../../data/type';
+import useRouteNavigate from '../../hooks/common/useRouteNavigate';
 
 const ListItemContainer = ({
   item,
@@ -12,16 +12,13 @@ const ListItemContainer = ({
   width: number;
   height: number;
 }) => {
-  const navigation = useNavigate();
+  const { onClick } = useRouteNavigate(`/island/${moldevId}/article/${item.id}`);
 
   return (
     <div
       style={{ width: width, height: height }}
       className={`rounded-md flex flex-col items-start justify-center hover:border-white hover:border-4`}
-      onClick={(e) => {
-        e.stopPropagation();
-        navigation(`/island/${moldevId}/article/${item.id}`);
-      }}
+      onClick={onClick}
     >
       <img className="w-full h-2/3 object-cover rounded-t-md" src={item.img} alt={item.title} />
       <div className="w-full h-1/3 flex flex-col items-start justify-center bg-white/50 rounded-b-md px-16 py-13">

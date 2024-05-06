@@ -1,9 +1,9 @@
 import BlurBackgroundContainer from '../components/common/BlurBackgroundContainer';
 import LoginContainer from '../components/loginContainer/LoginContainer';
-import useLoginPage from '../hooks/login/useLoginPage';
+import useBackground from '../hooks/common/useBackground';
 
 const LoginPage = () => {
-  const { isShow, childIsShow, setChildIsShow } = useLoginPage();
+  const { isShow, childIsShow, setChildIsShow } = useBackground('/');
 
   return (
     <BlurBackgroundContainer isShow={isShow} onClick={() => setChildIsShow(false)}>

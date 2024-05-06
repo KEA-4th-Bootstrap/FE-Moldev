@@ -1,4 +1,3 @@
-import React from 'react';
 import { OrderType } from '../../data/type';
 import Down from '../../assets/icons/icon_arrow_down.svg?react';
 

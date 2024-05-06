@@ -3,10 +3,10 @@ import ListContainer from '../components/listPage/ListContainer';
 import useCategoryList from '../hooks/list/useCategoryList';
 
 const ListPage = () => {
-  const { isShow, childIsShow, setChildIsShow, category } = useCategoryList();
+  const { isShow, childIsShow, onBackgroundClick, category } = useCategoryList();
 
   return (
-    <BlurBackgroundContainer isShow={isShow} onClick={() => setChildIsShow(false)}>
+    <BlurBackgroundContainer isShow={isShow} onClick={onBackgroundClick}>
       <ListContainer
         isShow={childIsShow}
         category={

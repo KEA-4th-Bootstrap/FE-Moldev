@@ -1,6 +1,6 @@
 import Logo from '../../assets/logo/logo_text.svg?react';
 import FillButton from '../common/FillButton';
-import StrokeButton from '../common/StrokdButton';
+import StrokeButton from '../common/StrokeButton';
 import JoinContainer from '../joinContainer/JoinContainer';
 import useLogin from '../../hooks/login/useLogin';
 

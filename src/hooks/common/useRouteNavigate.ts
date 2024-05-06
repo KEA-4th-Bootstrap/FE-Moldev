@@ -8,7 +8,11 @@ const useRouteNavigate = (url: string) => {
     navigate(url);
   };
 
-  return { onClick };
+  const onClickIcon = () => {
+    navigate(url);
+  };
+
+  return { onClick, onClickIcon };
 };
 
 export default useRouteNavigate;

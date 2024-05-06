@@ -1,4 +1,3 @@
-import React from 'react';
 import Logo from '../../assets/logo/logo_text.svg?react';
 import Lottie from 'react-lottie-player';
 import lottieJson from '../../assets/lottie/join_complete.json';

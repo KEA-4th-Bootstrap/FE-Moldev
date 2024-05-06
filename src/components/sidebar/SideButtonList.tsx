@@ -7,7 +7,7 @@ import Chatbot from '../../assets/icons/icon_chatbot.svg?react';
 import Person from '../../assets/icons/icon_person.svg?react';
 import Logo from '../../assets/logo/logo_icon.svg?react';
 import { SideType } from '../../data/type';
-import { useNavigate } from 'react-router';
+import useRouteNavigate from '../../hooks/common/useRouteNavigate';
 
 const SideButtonList = ({
   isLogin,
@@ -16,7 +16,7 @@ const SideButtonList = ({
   isLogin: boolean;
   setClicked: (clicked: SideType) => void;
 }) => {
-  const navigation = useNavigate();
+  const { onClickIcon } = useRouteNavigate('/login');
 
   return (
     <div className="shrink-0 h-full px-16 py-30 flex flex-col justify-between items-center shadow-right">
@@ -55,10 +55,7 @@ const SideButtonList = ({
               className="cursor-pointer hover:scale-110"
               width={28}
               height={28}
-              onClick={() => {
-                console.log('login clicked');
-                navigation('/login');
-              }}
+              onClick={onClickIcon}
             />
             <Question className="cursor-pointer hover:scale-110" width={28} height={28} />
           </>

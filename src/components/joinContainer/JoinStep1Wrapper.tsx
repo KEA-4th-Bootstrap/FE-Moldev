@@ -1,21 +1,29 @@
-import { useState } from 'react';
 import FillButton from '../common/FillButton';
+import useJoin from '../../hooks/join/useJoin';
 
-const JoinStep1Wrapper = ({ onClickNext }: { onClickNext: () => void }) => {
-  const [email, setEmail] = useState('');
-  const [authNumber, setAuthNumber] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordCheck, setPasswordCheck] = useState('');
-  const [isEmailSend, setIsEmailSend] = useState(false);
-  const [isAuthNumberCheck, setIsAuthNumberCheck] = useState(false);
-
-  const checkIsAbleToAuth = () => {
-    return email.length > 0;
-  };
-
-  const checkIsAbleToConfirm = () => {
-    return authNumber.length > 0 && isEmailSend;
-  };
+const JoinStep1Wrapper = ({
+  onClickNext,
+  hookReturn,
+}: {
+  onClickNext: () => void;
+  hookReturn: ReturnType<typeof useJoin>;
+}) => {
+  const {
+    form,
+    authNumber,
+    passwordCheck,
+    isEmailSend,
+    isAuthNumberCheck,
+    onChange,
+    setAuthNumber,
+    setPasswordCheck,
+    setIsEmailSend,
+    setIsAuthNumberCheck,
+    checkIsAbleToAuth,
+    checkIsAbleToConfirm,
+    isAbleToStep2,
+  } = hookReturn;
+  const { email, password } = form;
 
   return (
     <>
@@ -26,11 +34,14 @@ const JoinStep1Wrapper = ({ onClickNext }: { onClickNext: () => void }) => {
           </div>
           <div className="w-full flex items-center justify-center">
             <input
+              type="text"
               className="grow flex items-center justify-start p-8 outline-none border-none"
+              onChange={onChange}
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
             />
             <button
+              type="button"
               onClick={() => setIsEmailSend(true)}
               className="flex items-center justify-center rounded-button bg-main py-8 px-14 text-14 text-white border-none outline-none active:border-none active:outline-none focus:border-none focus:outline-none hover:border-none hover:outline-none hover:bg-dark-300 disabled:bg-gray-100 transition-all duration-200 ease-in-out"
               disabled={!checkIsAbleToAuth()}
@@ -56,6 +67,7 @@ const JoinStep1Wrapper = ({ onClickNext }: { onClickNext: () => void }) => {
               onChange={(e) => setAuthNumber(e.target.value)}
             />
             <button
+              type="button"
               onClick={() => setIsAuthNumberCheck(true)}
               className="flex items-center justify-center rounded-button bg-main py-8 px-14 text-14 text-white border-none outline-none active:border-none active:outline-none focus:border-none focus:outline-none hover:border-none hover:outline-none hover:bg-dark-300 disabled:bg-gray-100 transition-all duration-200 ease-in-out"
               disabled={!checkIsAbleToConfirm()}
@@ -76,9 +88,10 @@ const JoinStep1Wrapper = ({ onClickNext }: { onClickNext: () => void }) => {
           </div>
           <input
             type="password"
-            className="w-full flex items-center justify-start p-8 outline-none border-none "
+            className="w-full flex items-center justify-start p-8 outline-none border-none"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={onChange}
+            name="password"
           />
           <div className="w-full h-px bg-gray-200" />
         </div>
@@ -95,7 +108,7 @@ const JoinStep1Wrapper = ({ onClickNext }: { onClickNext: () => void }) => {
           <div className="w-full h-px bg-gray-200" />
         </div>
       </div>
-      <FillButton text="다음" onClick={onClickNext} isAble={true} />
+      <FillButton type="button" text="다음" onClick={onClickNext} isAble={isAbleToStep2()} />
     </>
   );
 };

@@ -1,33 +1,28 @@
-import React, { useEffect, useState } from 'react';
 import ChoiceContainer from '../loginContainer/ChoiceContainer';
 import FillButton from '../common/FillButton';
 import JoinStepsContainer from './JoinStepsContainer';
+import useJoinAgree from '../../hooks/join/useJoinAgree';
 
 const JoinContainer = ({ setIsShow }: { setIsShow: (item: boolean) => void }) => {
-  const [isTotalSelected, setIsTotalSelected] = useState(false);
-  const [isServiceSelected, setIsServiceSelected] = useState(false);
-  const [isPersonalSelected, setIsPersonalSelected] = useState(false);
-  const [isThirdSelected, setIsThirdSelected] = useState(false);
-  const [isMarketingSelected, setIsMarketingSelected] = useState(false);
-  const [isStepType, setIsStepType] = useState(false);
-  const [isComplete, setIsComplete] = useState(false);
-
-  useEffect(() => {
-    if (isServiceSelected && isPersonalSelected && isThirdSelected && isMarketingSelected) {
-      setIsTotalSelected(true);
-    } else {
-      setIsTotalSelected(false);
-    }
-  }, [isServiceSelected, isPersonalSelected, isThirdSelected, isMarketingSelected]);
+  const {
+    isTotalSelected,
+    isServiceSelected,
+    isPersonalSelected,
+    isThirdSelected,
+    isMarketingSelected,
+    isStepType,
+    setIsServiceSelected,
+    setIsPersonalSelected,
+    setIsThirdSelected,
+    setIsMarketingSelected,
+    setIsStepType,
+    onClickTotal,
+  } = useJoinAgree();
 
   return (
     <>
       {isStepType ? (
-        <JoinStepsContainer
-          isComplete={isComplete}
-          setIsComplete={setIsComplete}
-          setIsShow={setIsShow}
-        />
+        <JoinStepsContainer isMarketingSelected={isMarketingSelected} setIsShow={setIsShow} />
       ) : (
         <div className="w-full flex flex-col items-center justify-center gap-y-30">
           <div className="font-bold text-28">약관동의</div>
@@ -36,21 +31,7 @@ const JoinContainer = ({ setIsShow }: { setIsShow: (item: boolean) => void }) =>
             <ChoiceContainer
               text="전체 동의"
               isSelected={isTotalSelected}
-              onClick={() => {
-                if (isTotalSelected) {
-                  setIsTotalSelected(false);
-                  setIsServiceSelected(false);
-                  setIsPersonalSelected(false);
-                  setIsThirdSelected(false);
-                  setIsMarketingSelected(false);
-                } else {
-                  setIsTotalSelected(true);
-                  setIsServiceSelected(true);
-                  setIsPersonalSelected(true);
-                  setIsThirdSelected(true);
-                  setIsMarketingSelected(true);
-                }
-              }}
+              onClick={onClickTotal}
               isBold={true}
             />
             <ChoiceContainer
@@ -87,6 +68,7 @@ const JoinContainer = ({ setIsShow }: { setIsShow: (item: boolean) => void }) =>
             />
           </div>
           <FillButton
+            type="button"
             text="다음"
             onClick={() => {
               setIsStepType(true);

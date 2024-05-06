@@ -1,4 +1,3 @@
-import React from 'react';
 import Selected from '../../assets/icons/icon_selected.svg?react';
 import Unselected from '../../assets/icons/icon_unselected.svg?react';
 

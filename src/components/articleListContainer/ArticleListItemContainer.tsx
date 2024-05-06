@@ -9,7 +9,7 @@ const ArticleListItemContainer = ({
   item: ArticleListItemType;
   moldevId: string;
 }) => {
-  const { onClick } = useRouteNavigate(`/island/${moldevId}/${item.id}`);
+  const { onClick } = useRouteNavigate(`/island/${moldevId}/article/${item.id}`);
 
   return (
     <div

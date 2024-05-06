@@ -1,4 +1,3 @@
-import React from 'react';
 import { UserListType } from '../../data/type';
 
 const SearchUserResultContainer = ({ item, percent }: { item: UserListType; percent?: number }) => {

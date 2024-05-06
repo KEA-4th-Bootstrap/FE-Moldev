@@ -23,6 +23,7 @@ export type RecommendUserType = {
 };
 
 export type UserListType = {
+  moldevId: string;
   img: string;
   name: string;
   introduce: string;
@@ -31,6 +32,7 @@ export type UserListType = {
 };
 
 export type ArticleListItemType = {
+  moldevId: string;
   id: number;
   title: string;
   content: string;

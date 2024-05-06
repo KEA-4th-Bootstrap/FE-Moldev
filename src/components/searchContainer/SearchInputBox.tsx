@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { SearchType } from '../../data/type';
 import Search from '../../assets/icons/icon_search_box.svg?react';
 import Down from '../../assets/icons/icon_arrow_down.svg?react';
+import useSearchInput from '../../hooks/sidebar/search/useSearchInput';
 
 const SearchInputBox = ({
   searchType,
@@ -10,12 +10,18 @@ const SearchInputBox = ({
   searchType: SearchType;
   setSearchType: (type: SearchType) => void;
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, searchInput, setIsOpen, handleSearchInput } = useSearchInput();
   return (
     <div className="w-full flex items-center justify-center gap-x-10 relative">
       <div className="grow flex items-center justify-center rounded-full px-8 py-6 border border-gray-800 gap-x-10">
         <Search />
-        <input className="grow border-none outline-none" type="text" />
+        <input
+          className="grow border-none outline-none"
+          type="text"
+          value={searchInput}
+          onChange={handleSearchInput}
+          placeholder={searchType === 'article' ? '게시글을 검색해보세요' : '유저명을 검색해보세요'}
+        />
       </div>
       <div className="flex items-center justify-center">
         <div

@@ -8,36 +8,23 @@ Title: house
 */
 
 import { useGLTF } from '@react-three/drei';
-import gsap from 'gsap';
-import { useCallback } from 'react';
 import { Mesh } from 'three';
-
-const useGettingHouseRef = () => {
-  const houseRef = useCallback((node: Mesh) => {
-    if (node !== null) {
-      gsap.to(node.position, {
-        y: -0.8,
-        duration: 2,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      });
-      gsap.to(node.rotation, {
-        y: Math.PI * 2,
-        duration: 20,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      });
-    }
-  }, []);
-
-  return [houseRef];
-};
+import useModel from '../../hooks/main/useModel';
 
 export function HouseModel(props: JSX.IntrinsicElements['group'] & { isHover: boolean }) {
-  const { nodes, materials } = useGLTF('/models/house/scene.gltf');
-  const [houseRef] = useGettingHouseRef();
+  const {
+    nodes,
+    materials,
+    ref: houseRef,
+  } = useModel(
+    '/models/house/scene.gltf',
+    { x: 0, y: -0.8, z: -1 },
+    { x: 0, y: Math.PI * 2, z: 0 },
+    2,
+    2,
+    20,
+  );
+
   return (
     <group
       {...props}

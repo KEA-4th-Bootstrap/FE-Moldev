@@ -7,57 +7,29 @@ Source: https://sketchfab.com/3d-models/trophy-clash-royale-57ec3bc84cc74f5a85da
 Title: Trophy (Clash Royale)
 */
 
-import { useCallback } from 'react';
 import { useGLTF } from '@react-three/drei';
-import { Group, Mesh } from 'three';
-import gsap from 'gsap';
-import { useNavigate } from 'react-router';
-
-const useGettingRef = () => {
-  const ref = useCallback((node: Group) => {
-    if (node !== null) {
-      gsap.to(node.position, {
-        x: 2,
-        y: 0.5,
-        z: 13,
-        duration: 10,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      });
-      gsap.fromTo(
-        node.rotation,
-        {
-          x: Math.PI / 2,
-          y: 0,
-          z: 0,
-        },
-        {
-          x: -Math.PI * 2,
-          y: Math.PI * 1,
-          z: Math.PI * 2,
-          duration: 30,
-          repeat: -1,
-          ease: 'power1.inOut',
-          yoyo: true,
-        },
-      );
-    }
-  }, []);
-
-  return [ref];
-};
+import { Mesh } from 'three';
+import useModel from '../../hooks/main/useModel';
 
 export function TrophyModel(
   props: JSX.IntrinsicElements['group'] & {
     setHover: (hover: boolean) => void;
     isHover: boolean;
-    moldevId: string;
+    onClick: () => void;
   },
 ) {
-  const navigation = useNavigate();
-  const [group] = useGettingRef();
-  const { nodes, materials } = useGLTF('/models/trophy/scene.gltf');
+  const {
+    nodes,
+    materials,
+    ref: group,
+  } = useModel(
+    '/models/trophy/scene.gltf',
+    { x: 2, y: 0.5, z: 13 },
+    { x: -Math.PI * 2, y: Math.PI, z: Math.PI * 2 },
+    10,
+    10,
+    30,
+  );
   return (
     <group
       ref={group as any}
@@ -67,7 +39,7 @@ export function TrophyModel(
       onPointerEnter={() => props.setHover(true)}
       onPointerOut={() => props.setHover(false)}
       scale={props.isHover ? 1.25 : 1}
-      onClick={() => navigation(`/island/${props.moldevId}/awards`)}
+      onClick={props.onClick}
     >
       <mesh
         geometry={(nodes.Object_2 as Mesh).geometry}

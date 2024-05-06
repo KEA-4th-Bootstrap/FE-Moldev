@@ -1,220 +1,44 @@
 import { OrbitControls, Text3D } from '@react-three/drei';
-import { Canvas, useLoader } from '@react-three/fiber';
-import { useCallback, useEffect, useState } from 'react';
-// import IslandModel from './IslandModel';
-import { DirectionalLight, DoubleSide, Mesh, Object3D, TextureLoader } from 'three';
+import { Canvas } from '@react-three/fiber';
+import { DoubleSide, Object3D } from 'three';
 import { IslandModel } from './IslandModel';
-import gsap from 'gsap';
-// import WriteModel from './WriteModel';
-import { useNavigate, useParams } from 'react-router';
 import { TrophyModel } from './TrophyModel';
 import { GunModel } from './GunModel';
-// import { HouseModel } from './HouseModel';
 import WriteModel from './WriteModel';
 import { HouseModel } from './HouseModel';
-
-const lightIntensity = 6.0;
-
-const positions = [
-  // points of cube, 8 points, length of each side is 10, center is (0, 0, 0)
-  [5, 5, 5],
-  [5, 5, -5],
-  [5, -5, 5],
-  [5, -5, -5],
-  [-5, 5, 5],
-  [-5, 5, -5],
-  [-5, -5, 5],
-  [-5, -5, -5],
-];
-
-const colors = [
-  '#FF2450',
-  '#008060',
-  '#6A0DAD',
-  '#FFD700',
-  '#007FFF',
-  '#FF9500',
-  '#00A78B',
-  '#FF5078',
-];
-const useGettingShadowRef = () => {
-  const shadowLightRef = useCallback((node: DirectionalLight) => {
-    if (node !== null) {
-      const shadow = node.shadow;
-      shadow.mapSize.width = 3000;
-      shadow.mapSize.height = 3000;
-      shadow.camera.near = 10;
-      shadow.camera.far = 500;
-      shadow.camera.left = -200;
-      shadow.camera.right = 200;
-      shadow.camera.top = 200;
-      shadow.camera.bottom = -200;
-      shadow.radius = 5;
-    }
-  }, []);
-
-  return [shadowLightRef];
-};
-
-const useGettingBallRef = () => {
-  const ballRef = useCallback((node: Mesh) => {
-    if (node !== null) {
-      gsap.to(node.position, {
-        x: -10,
-        y: 2,
-        z: 8,
-        duration: 10,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      });
-
-      gsap.fromTo(
-        node.rotation,
-        {
-          x: 0,
-          y: 0,
-          z: 0,
-        },
-        {
-          x: Math.PI * 2,
-          y: Math.PI * 1,
-          z: 0,
-          duration: 20,
-          repeat: -1,
-          ease: 'none',
-          yoyo: true,
-        },
-      );
-    }
-  }, []);
-
-  return [ballRef];
-};
-
-const usePrizeTextRef = () => {
-  const ref = useCallback((node: Mesh) => {
-    if (node !== null) {
-      gsap.to(node.position, {
-        x: -1,
-        z: 13,
-        duration: 10,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      });
-      gsap.to(node.position, {
-        y: 5,
-        duration: 1,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      });
-    }
-  }, []);
-
-  return [ref];
-};
-
-const useTroubleTextRef = () => {
-  const ref = useCallback((node: Mesh) => {
-    if (node !== null) {
-      gsap.to(node.position, {
-        x: -10,
-        z: 2,
-        duration: 10,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      });
-      gsap.to(node.position, {
-        y: 8,
-        duration: 1,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      });
-    }
-  }, []);
-
-  return [ref];
-};
-
-const useProjectTextRef = () => {
-  const ref = useCallback((node: Mesh) => {
-    if (node !== null) {
-      gsap.to(node.position, {
-        x: 9,
-        z: 6,
-        duration: 10,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      });
-      gsap.to(node.position, {
-        y: 4.5,
-        duration: 1,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      });
-    }
-  }, []);
-
-  return [ref];
-};
-
-const useActivityRef = () => {
-  const ref = useCallback((node: Mesh) => {
-    if (node !== null) {
-      gsap.to(node.position, {
-        x: -12,
-        z: 8,
-        duration: 10,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      });
-      gsap.to(node.position, {
-        y: 6.5,
-        duration: 1,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-      });
-    }
-  }, []);
-
-  return [ref];
-};
+import useIsland from '../../hooks/main/useIsland';
 
 const IslandContainer = () => {
-  const navigation = useNavigate();
-  const { moldevId } = useParams();
-  const [writeHover, setWriteHover] = useState(false);
-  // const [ballHover, setBallHover] = useState(false);
-  const [ballRef] = useGettingBallRef();
-  const [shadowLightRef] = useGettingShadowRef();
-  const [shadowLightRef2] = useGettingShadowRef();
-  const colorMap = useLoader(TextureLoader, '/models/beachball/textures/ball_texture.jpg');
-  const textMap = useLoader(TextureLoader, '/text/gradient.jpeg');
-
-  const [prizeTextRef] = usePrizeTextRef();
-  const [troubleTextRef] = useTroubleTextRef();
-  const [projectTextRef] = useProjectTextRef();
-  const [activityTextRef] = useActivityRef();
-  const [prizeHover, setPrizeHover] = useState(false);
-  const [projectHover, setProjectHover] = useState(false);
-  const [activityHover, setActivityHover] = useState(false);
-  const [troubleHover, setTroubleHover] = useState(false);
-
-  useEffect(() => {
-    document.body.style.cursor = activityHover ? 'pointer' : 'auto';
-  }, [activityHover]);
-
-  useEffect(() => {
-    console.log('params', moldevId);
-  }, [moldevId]);
+  const {
+    moldevId,
+    lightIntensity,
+    positions,
+    colors,
+    colorMap,
+    textMap,
+    writeHover,
+    setWriteHover,
+    projectHover,
+    setProjectHover,
+    prizeHover,
+    setPrizeHover,
+    activityHover,
+    setActivityHover,
+    troubleHover,
+    setTroubleHover,
+    ballRef,
+    prizeTextRef,
+    troubleTextRef,
+    projectTextRef,
+    activityTextRef,
+    shadowLightRef,
+    shadowLightRef2,
+    onClickProject,
+    onClickPrize,
+    onClickTrouble,
+    onClickActivity,
+    onClickWrite,
+  } = useIsland();
 
   return (
     <div className="grow h-full flex items-center justify-center relative">
@@ -282,7 +106,11 @@ const IslandContainer = () => {
           <meshStandardMaterial color={'white'} side={DoubleSide} />
         </mesh>
         {/* 섬 모델 */}
-        <IslandModel setHover={setProjectHover} isHover={projectHover} moldevId={moldevId || ''} />
+        <IslandModel
+          setHover={setProjectHover}
+          isHover={projectHover}
+          onClickProject={onClickProject}
+        />
         <Text3D
           ref={projectTextRef}
           scale={0.7}
@@ -294,7 +122,7 @@ const IslandContainer = () => {
           <meshStandardMaterial map={textMap} side={DoubleSide} />
         </Text3D>
         {/* prize 모델 */}
-        <TrophyModel setHover={setPrizeHover} isHover={prizeHover} moldevId={moldevId || ''} />
+        <TrophyModel setHover={setPrizeHover} isHover={prizeHover} onClick={onClickPrize} />
         <Text3D
           ref={prizeTextRef}
           scale={0.7}
@@ -306,7 +134,7 @@ const IslandContainer = () => {
           <meshStandardMaterial map={textMap} side={DoubleSide} />
         </Text3D>
         {/* trouble shooting 모델 */}
-        <GunModel setHover={setTroubleHover} isHover={troubleHover} moldevId={moldevId || ''} />
+        <GunModel setHover={setTroubleHover} isHover={troubleHover} onClick={onClickTrouble} />
         <Text3D
           ref={troubleTextRef}
           scale={0.7}
@@ -326,7 +154,7 @@ const IslandContainer = () => {
           scale={activityHover ? 1.2 : 1}
           onPointerEnter={() => setActivityHover(true)}
           onPointerOut={() => setActivityHover(false)}
-          onClick={() => navigation(`/island/${moldevId}/activity`)}
+          onClick={onClickActivity}
         >
           <sphereGeometry args={[2, 32, 32]} />
           <meshStandardMaterial map={colorMap} side={DoubleSide} />
@@ -353,9 +181,7 @@ const IslandContainer = () => {
           }}
           onPointerEnter={() => setWriteHover(true)}
           onPointerOut={() => setWriteHover(false)}
-          onClick={() => {
-            navigation(`/island/${moldevId}/write`);
-          }}
+          onClick={onClickWrite}
         >
           <ambientLight intensity={5} color="#FFFFFF" />
           {moldevId !== undefined && moldevId === '1' ? (

@@ -7,55 +7,18 @@ Source: https://sketchfab.com/3d-models/treasure-island-446c38eec211410388ba09d3
 Title: treasure island
 */
 
-import { useEffect, useRef } from 'react';
-import { useGLTF, useAnimations } from '@react-three/drei';
-import { Group, Mesh, SkinnedMesh } from 'three';
-import { useNavigate } from 'react-router';
+import { useGLTF } from '@react-three/drei';
+import { Mesh, SkinnedMesh } from 'three';
+import useIslandModel from '../../hooks/main/useIslandModel';
 
 export const IslandModel = (
   props: JSX.IntrinsicElements['group'] & {
     setHover: (hover: boolean) => void;
     isHover: boolean;
-    moldevId: string;
+    onClickProject: () => void;
   },
 ) => {
-  const navigation = useNavigate();
-  let canClick = true;
-  const group = useRef<Group>();
-  const { nodes, materials, animations } = useGLTF('/models/island2/scene.gltf');
-  const { actions } = useAnimations(animations, group);
-
-  // console.log('nodes', nodes);
-  // console.log('materials', materials);
-  // console.log('animations', animations);
-  // console.log('actions', actions);
-
-  // 애니메이션 시작
-  useEffect(() => {
-    const actionNames = Object.keys(actions);
-    if (actionNames.length > 0) {
-      const firstAction = actions[actionNames[0]];
-      firstAction?.setEffectiveTimeScale(0.3);
-      firstAction?.play();
-    }
-
-    // 컴포넌트가 언마운트될 때 애니메이션 정지
-    return () => {
-      if (actionNames.length > 0) {
-        const firstAction = actions[actionNames[0]];
-        firstAction?.stop();
-      }
-    };
-  }, [actions]);
-
-  const handleClick = (item: string) => {
-    if (!canClick) return;
-    console.log(item);
-    canClick = false;
-    setTimeout(() => {
-      canClick = true;
-    }, 1000);
-  };
+  const { nodes, materials, group } = useIslandModel();
 
   return (
     <group ref={group as any} {...props} dispose={null}>
@@ -101,9 +64,6 @@ export const IslandModel = (
                   scale={15.213}
                   castShadow
                   receiveShadow
-                  onClick={() => {
-                    handleClick('아래쪽 바위 중 큰 바위');
-                  }}
                 >
                   <mesh
                     name="large_rock__large_rock_0"
@@ -121,9 +81,6 @@ export const IslandModel = (
                   scale={[5.866, 5.841, 2.759]}
                   castShadow
                   receiveShadow
-                  onClick={() => {
-                    handleClick('오른쪽 상단 오른쪽 돌');
-                  }}
                 >
                   <mesh
                     name="small_rock_small_rock_0"
@@ -141,9 +98,6 @@ export const IslandModel = (
                   scale={[5.377, 1.644, 5.377]}
                   castShadow
                   receiveShadow
-                  onClick={() => {
-                    handleClick('바닥에 꽂힌 나무판');
-                  }}
                 >
                   <mesh
                     name="plank_plank_0"
@@ -210,9 +164,6 @@ export const IslandModel = (
                   scale={8.826}
                   castShadow
                   receiveShadow
-                  onClick={() => {
-                    handleClick('바위 중 아래 바위');
-                  }}
                 >
                   <mesh
                     name="large_rock_001_large_rock_0"
@@ -230,9 +181,6 @@ export const IslandModel = (
                   scale={[2.708, 2.697, 1.274]}
                   castShadow
                   receiveShadow
-                  onClick={() => {
-                    handleClick('오른쪽 상단에 왼쪽 작은 무언가');
-                  }}
                 >
                   <mesh
                     name="small_rock003_small_rock_0"
@@ -250,9 +198,6 @@ export const IslandModel = (
                   scale={[4.58, 4.56, 2.154]}
                   castShadow
                   receiveShadow
-                  onClick={() => {
-                    handleClick('왼쪽 상단에 오른쪽 조금 큰 무언가');
-                  }}
                 >
                   <mesh
                     name="small_rock001_small_rock_0"
@@ -270,9 +215,6 @@ export const IslandModel = (
                   scale={[2.115, 2.106, 0.995]}
                   castShadow
                   receiveShadow
-                  onClick={() => {
-                    handleClick('왼쪽 상단에 왼쪽 작은 무언가');
-                  }}
                 >
                   <mesh
                     name="small_rock002_small_rock_0"
@@ -290,9 +232,6 @@ export const IslandModel = (
                   scale={[0.982, 0.977, 0.462]}
                   castShadow
                   receiveShadow
-                  onClick={() => {
-                    handleClick('오른족 상단에 왼쪽 작은 돌맹이');
-                  }}
                 >
                   <mesh
                     name="small_rock004_small_rock_0"
@@ -350,10 +289,7 @@ export const IslandModel = (
                   scale={props.isHover ? 7 : 6.375}
                   castShadow
                   receiveShadow
-                  onClick={() => {
-                    handleClick('나무통');
-                    navigation(`/island/${props.moldevId}/project`);
-                  }}
+                  onClick={props.onClickProject}
                   onPointerOver={() => {
                     props.setHover(true);
                   }}
@@ -389,9 +325,6 @@ export const IslandModel = (
                   receiveShadow
                   rotation={[-Math.PI / 2, 0, 0]}
                   scale={100}
-                  onClick={() => {
-                    handleClick('보물상자');
-                  }}
                 >
                   <group name="Object_41" castShadow receiveShadow>
                     <primitive object={nodes._rootJoint_1} castShadow receiveShadow />
@@ -459,9 +392,6 @@ export const IslandModel = (
                   receiveShadow
                   rotation={[-Math.PI / 2, 0, 0]}
                   scale={100}
-                  onClick={() => {
-                    handleClick('맨 아래 조개');
-                  }}
                 >
                   <group name="Object_55" castShadow receiveShadow>
                     <primitive object={nodes._rootJoint_2} castShadow receiveShadow />
@@ -518,9 +448,6 @@ export const IslandModel = (
                   scale={100}
                   castShadow
                   receiveShadow
-                  onClick={() => {
-                    handleClick('바닷물');
-                  }}
                 >
                   <group name="Object_92" castShadow receiveShadow>
                     <primitive object={nodes._rootJoint_4} castShadow receiveShadow />
@@ -550,9 +477,6 @@ export const IslandModel = (
                   scale={100}
                   castShadow
                   receiveShadow
-                  onClick={() => {
-                    handleClick('오른쪽 나무');
-                  }}
                 >
                   <group name="Object_135" castShadow receiveShadow>
                     <primitive object={nodes._rootJoint_5} castShadow receiveShadow />
@@ -616,9 +540,6 @@ export const IslandModel = (
                   scale={100}
                   castShadow
                   receiveShadow
-                  onClick={() => {
-                    handleClick('왼쪽 나무');
-                  }}
                 >
                   <group name="Object_327" castShadow receiveShadow>
                     <primitive object={nodes._rootJoint_7} castShadow receiveShadow />

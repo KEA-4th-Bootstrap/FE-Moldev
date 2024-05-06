@@ -1,42 +1,29 @@
 import Close from '../../assets/icons/icon_close.svg?react';
 import Post from '../../assets/icons/icon_post.svg?react';
-import { useState } from 'react';
 import MDEditor, { commands } from '@uiw/react-md-editor';
 import TroubleBox from '../../assets/icons/icon_trouble_box.svg?react';
 import ProjectBox from '../../assets/icons/icon_project_box.svg?react';
 import { CategoryToKorType } from '../../data/type';
 import Down from '../../assets/icons/icon_arrow_down.svg?react';
+import useWrite from '../../hooks/write/useWrite';
 
-const WriteContainer = ({ onClose }: { onClose: () => void }) => {
-  const [value, setValue] = useState<string>('');
-  const [category, setCategory] = useState<CategoryToKorType | null>(null);
-  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [error, setError] = useState<string>('');
-  // const [troubleStart, setTroubleStart] = useState<number[]>([]);
-  // const [projectStart, setProjectStart] = useState<number[]>([]);
+const WriteContainer = ({ isShow, onClose }: { isShow: boolean; onClose: () => void }) => {
+  const {
+    value,
+    category,
+    isCategoryOpen,
+    isError,
+    error,
+    setValue,
+    setCategory,
+    setIsCategoryOpen,
+    handleSave,
+  } = useWrite();
 
-  // useEffect(() => {
-  //   console.log('project start --> ', projectStart);
-  //   console.log('프로젝트 시작 --> ', value.slice(projectStart[projectStart.length - 1]));
-  //   console.log('trouble start --> ', troubleStart);
-  // }, [projectStart, troubleStart]);
   const troubleInfo =
     '<!-- 새로운 트러블슈팅 내용을 주석 사이에 작성해주세요. 주석은 삭제 및 수정하지 마세요. -->';
   const projectInfo =
     '<!-- 새로운 프로젝트 내용을 주석 사이에 작성해주세요. 주석은 삭제 및 수정하지 마세요. -->';
-
-  const handleSave = () => {
-    console.log('저장 --> ', value);
-    if (!category) {
-      setError('카테고리를 선택해주세요.');
-      setIsError(true);
-      setTimeout(() => {
-        setIsError(false);
-      }, 2000);
-      return;
-    }
-  };
 
   const troubleShootingBox = {
     name: 'troubleShootingBox',
@@ -83,7 +70,7 @@ const WriteContainer = ({ onClose }: { onClose: () => void }) => {
   return (
     <>
       <div
-        className="w-4/5 h-[90%] flex flex-col items-center justify-start rounded-modal bg-white shadow-md relative"
+        className={`w-4/5 h-[90%] flex flex-col items-center justify-start rounded-modal bg-white shadow-md relative ${isShow ? 'translate-y-0' : 'translate-y-[200%]'} transition-all duration-150`}
         onClick={(e) => {
           e.stopPropagation();
         }}

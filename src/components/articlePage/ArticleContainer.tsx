@@ -1,24 +1,23 @@
-import { useEffect, useState } from 'react';
 import Close from '../../assets/icons/icon_close.svg?react';
-import { ArticleListItemType, categoryEngToKor } from '../../data/type';
-import { dummyArticle } from '../../data/dummy';
+import { categoryEngToKor } from '../../data/type';
 import MDEditor from '@uiw/react-md-editor';
 import Pin from '../../assets/icons/icon_pin.svg?react';
+import useArticle from '../../hooks/article/useArticle';
 
-const ArticleContainer = ({ articleId, onClose }: { articleId: number; onClose: () => void }) => {
-  const [article, setArticle] = useState<ArticleListItemType | null>(null);
-
-  useEffect(() => {
-    if (!articleId) return;
-
-    // fetch article data
-    console.log('articleID:', articleId);
-    setArticle(dummyArticle);
-  }, [articleId]);
+const ArticleContainer = ({
+  articleId,
+  isShow,
+  onClose,
+}: {
+  articleId: number;
+  isShow: boolean;
+  onClose: () => void;
+}) => {
+  const article = useArticle(articleId);
 
   return (
     <div
-      className="w-4/5 h-[95%] flex flex-col items-center justify-start rounded-modal bg-white shadow-md relative"
+      className={`w-4/5 h-[95%] flex flex-col items-center justify-start rounded-modal bg-white shadow-md relative ${isShow ? 'translate-y-0' : 'translate-y-[200%]'} transition-all duration-150`}
       onClick={(e) => {
         e.stopPropagation();
       }}

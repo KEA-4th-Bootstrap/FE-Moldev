@@ -1,20 +1,12 @@
-import { useEffect, useState } from 'react';
-import { SideType } from '../../data/type';
 import SideButtonList from './SideButtonList';
 import ArticleListContainer from './ArticleListContainer';
 import RecommendUserContainer from './RecommendUserContainer';
 import ChatbotContainer from './ChatbotContainer';
 import SearchContainer from './SearchContainer';
+import useSidebar from '../../hooks/sidebar/useSidebar';
 
 const SideBar = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [clicked, setClicked] = useState<SideType>('list');
-  const memberName = '두두';
-  const islandNamd = '복복두더지';
-
-  useEffect(() => {
-    setIsLogin(true);
-  }, []);
+  const { isLogin, clicked, setClicked, memberName, islandNamd } = useSidebar();
 
   return (
     <div className="flex w-1/3 h-full items-start justify-start shadow-right">

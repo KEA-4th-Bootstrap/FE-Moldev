@@ -3,9 +3,9 @@ import useBackground from '../common/useBackground';
 
 const useCategoryList = () => {
   const { moldevId, category } = useParams();
-  const { isShow, childIsShow, setChildIsShow } = useBackground(`/island/${moldevId}`);
+  const { isShow, childIsShow, onBackgroundClick } = useBackground(`/island/${moldevId}`);
 
-  return { isShow, childIsShow, setChildIsShow, category };
+  return { isShow, childIsShow, onBackgroundClick, category };
 };
 
 export default useCategoryList;

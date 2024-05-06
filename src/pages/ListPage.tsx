@@ -1,42 +1,14 @@
-import { useEffect, useState } from 'react';
 import BlurBackgroundContainer from '../components/common/BlurBackgroundContainer';
-import { useNavigate, useParams } from 'react-router';
 import ListContainer from '../components/listPage/ListContainer';
+import useCategoryList from '../hooks/list/useCategoryList';
 
 const ListPage = () => {
-  const { moldevId, category } = useParams();
-  const navigation = useNavigate();
-  const [isShow, setIsShow] = useState(false);
-  const [childIsShow, setChildIsShow] = useState(false);
-
-  useEffect(() => {
-    setIsShow(true);
-    const timer = setTimeout(() => {
-      setChildIsShow(true);
-    }, 100);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
-
-  const handleBackgroundClick = () => {
-    if (!childIsShow) return;
-
-    setChildIsShow(false);
-
-    const timer = setTimeout(() => {
-      navigation(`/island/${moldevId}`);
-    }, 100);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  };
+  const { isShow, childIsShow, setChildIsShow, category } = useCategoryList();
 
   return (
-    <BlurBackgroundContainer isShow={isShow} onClick={handleBackgroundClick}>
+    <BlurBackgroundContainer isShow={isShow} onClick={() => setChildIsShow(false)}>
       <ListContainer
+        isShow={childIsShow}
         category={
           category === 'activity'
             ? 'activity'

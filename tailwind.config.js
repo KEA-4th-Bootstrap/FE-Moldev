@@ -19,6 +19,7 @@ export default {
       message: '1.25rem',
       modal: '1.5rem',
       button: '2.5rem',
+      card: '0.3rem',
     },
     extend: {
       padding: {
@@ -27,6 +28,7 @@ export default {
         6: '0.375rem',
         8: '0.5rem',
         10: '0.625rem',
+        11: '0.6875rem',
         12: '0.75rem',
         13: '0.8125rem',
         14: '0.875rem',
@@ -104,6 +106,8 @@ export default {
         120: '7.5rem',
       },
       gap: {
+        2: '0.125rem',
+        3: '0.1875rem',
         4: '0.25rem',
         5: '0.3125rem',
         6: '0.375rem',
@@ -111,6 +115,7 @@ export default {
         8: '0.5rem',
         10: '0.625rem',
         12: '0.75rem',
+        13: '0.8125rem',
         14: '0.875rem',
         16: '1rem',
         18: '1.125rem',
@@ -125,6 +130,7 @@ export default {
         36: '2.25rem',
         38: '2.375rem',
         40: '2.5rem',
+        50: '3.125rem',
       },
       fontSize: {
         12: ['.75rem', { lineHeight: '1rem' }],
@@ -183,6 +189,9 @@ export default {
         right: '2px 0 2px 0 rgba(0, 0, 0, 0.05)',
         bottom: '0 2px 2px 0 rgba(0, 0, 0, 0.2)',
       },
+      backgroundImage: {
+        gradient: "url('/img/background.png')",
+      },
       screens: {
         xs: { max: '639px' },
         sm: { min: '640px', max: '767px' },
@@ -210,5 +219,5 @@ export default {
       },
     },
   },
-  plugins: [import('tailwind-scrollbar-hide')],
+  plugins: [import('tailwind-scrollbar-hide'), import('@tailwindcss/line-clamp')],
 };

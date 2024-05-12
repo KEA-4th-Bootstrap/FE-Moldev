@@ -31,18 +31,6 @@ export type UserListType = {
   updated: string;
 };
 
-export type ArticleListItemType = {
-  moldevId: string;
-  id: number;
-  title: string;
-  content: string;
-  createdAt: string;
-  visit: number;
-  category: CategoryType;
-  img: string;
-  userName: string;
-};
-
 export type ChatMessageType = {
   id: number;
   message: string;
@@ -78,4 +66,31 @@ export const initialJoinForm: joinType = {
   userName: '',
   islandName: '',
   profileImage: '',
+};
+
+export type ArticleListItemType = {
+  moldevId: string;
+  id: number;
+  title: string;
+  content: string;
+  createdAt: string;
+  visit: number;
+  category: CategoryType;
+  img: string;
+  userName: string;
+  userImg: string;
+};
+
+export type UserListItemType = {
+  moldevId: string;
+  userName: string;
+  userImg: string;
+  islandName: string;
+  visit: number;
+  updated: string;
+  articles: {
+    id: number;
+    title: string;
+    createdAt: string;
+  }[];
 };

@@ -8,7 +8,6 @@ import useShadowRef from './useShadowRef';
 
 const useIsland = () => {
   const { moldevId } = useParams();
-  const [writeHover, setWriteHover] = useState(false);
   const [prizeHover, setPrizeHover] = useState(false);
   const [projectHover, setProjectHover] = useState(false);
   const [activityHover, setActivityHover] = useState(false);
@@ -48,13 +47,8 @@ const useIsland = () => {
   ];
 
   const colorMap = useLoader(TextureLoader, '/models/beachball/textures/ball_texture.jpg');
-  const textMap = useLoader(TextureLoader, '/text/gradient.jpeg');
 
   const [ballRef] = useModelRef({ x: -10, y: 2, z: 8 }, { x: Math.PI * 2, y: Math.PI, z: 0 });
-  const [prizeTextRef] = useModelRef({ x: -1, y: 5, z: 13 }, { x: 0, y: 0, z: 0 });
-  const [troubleTextRef] = useModelRef({ x: -10, y: 8, z: 2 }, { x: 0, y: 0, z: 0 });
-  const [projectTextRef] = useModelRef({ x: 9, y: 4.5, z: 6 }, { x: 0, y: 0, z: 0 });
-  const [activityTextRef] = useModelRef({ x: -12, y: 6.5, z: 8 }, { x: 0, y: 0, z: 0 });
   const [shadowLightRef] = useShadowRef();
   const [shadowLightRef2] = useShadowRef();
 
@@ -62,7 +56,6 @@ const useIsland = () => {
   const { onClickIcon: onClickPrize } = useRouteNavigate(`/island/${moldevId}/awards`);
   const { onClickIcon: onClickTrouble } = useRouteNavigate(`/island/${moldevId}/trouble`);
   const { onClickIcon: onClickActivity } = useRouteNavigate(`/island/${moldevId}/activity`);
-  const { onClickIcon: onClickWrite } = useRouteNavigate(`/island/${moldevId}/write`);
 
   return {
     moldevId,
@@ -70,9 +63,6 @@ const useIsland = () => {
     positions,
     colors,
     colorMap,
-    textMap,
-    writeHover,
-    setWriteHover,
     projectHover,
     setProjectHover,
     prizeHover,
@@ -82,17 +72,12 @@ const useIsland = () => {
     troubleHover,
     setTroubleHover,
     ballRef,
-    prizeTextRef,
-    troubleTextRef,
-    projectTextRef,
-    activityTextRef,
     shadowLightRef,
     shadowLightRef2,
     onClickProject,
     onClickPrize,
     onClickTrouble,
     onClickActivity,
-    onClickWrite,
   };
 };
 

@@ -27,6 +27,7 @@ export default {
         5: '0.3125rem',
         6: '0.375rem',
         8: '0.5rem',
+        9: '0.5625rem',
         10: '0.625rem',
         11: '0.6875rem',
         12: '0.75rem',
@@ -213,9 +214,27 @@ export default {
             backgroundColor: '#00A9FF',
           },
         },
+        grow: {
+          '0%': {
+            maxWidth: '46px',
+          },
+          '100%': {
+            maxWidth: '200px',
+          },
+        },
+        growReverse: {
+          '0%': {
+            maxWidth: '200px',
+          },
+          '100%': {
+            maxWidth: '46px',
+          },
+        },
       },
       animation: {
         bounce: 'bounce 1s infinite',
+        grow: 'grow 0.3s',
+        growReverse: 'growReverse 0.3s',
       },
     },
   },

@@ -1,23 +1,26 @@
-import { OrbitControls, Text3D } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { DoubleSide, Object3D } from 'three';
 import { IslandModel } from './IslandModel';
 import { TrophyModel } from './TrophyModel';
 import { GunModel } from './GunModel';
-import WriteModel from './WriteModel';
-import { HouseModel } from './HouseModel';
+import Visit from '../../assets/icons/icon_visit.svg?react';
+import Project from '../../assets/icons/icon_project.svg?react';
+import Trouble from '../../assets/icons/icon_trouble.svg?react';
+import Activity from '../../assets/icons/icon_activity.svg?react';
+import Prize from '../../assets/icons/icon_awards.svg?react';
+import Write from '../../assets/icons/icon_write_main.svg?react';
 import useIsland from '../../hooks/main/useIsland';
+import LeftToggle from './LeftToggle';
+import RightToggle from './RightToggle';
 
 const IslandContainer = () => {
   const {
-    moldevId,
+    // moldevId,
     lightIntensity,
     positions,
     colors,
     colorMap,
-    textMap,
-    writeHover,
-    setWriteHover,
     projectHover,
     setProjectHover,
     prizeHover,
@@ -27,21 +30,16 @@ const IslandContainer = () => {
     troubleHover,
     setTroubleHover,
     ballRef,
-    prizeTextRef,
-    troubleTextRef,
-    projectTextRef,
-    activityTextRef,
     shadowLightRef,
     shadowLightRef2,
     onClickProject,
     onClickPrize,
     onClickTrouble,
     onClickActivity,
-    onClickWrite,
   } = useIsland();
 
   return (
-    <div className="grow h-full flex items-center justify-center relative">
+    <div className="grow min-h-screen h-screen flex items-center justify-center relative">
       <Canvas shadows camera={{ fov: 75, near: 0.1, far: 500, position: [5, 15, 30] }}>
         <OrbitControls minDistance={15} maxDistance={45} />
         <ambientLight position={[0, 0, 0]} intensity={2} color="#FFFFFF" />
@@ -111,41 +109,8 @@ const IslandContainer = () => {
           isHover={projectHover}
           onClickProject={onClickProject}
         />
-        <Text3D
-          ref={projectTextRef}
-          scale={0.7}
-          position={[8, 4, 8]}
-          font={'/text/pretendard_semibold.json'}
-          visible={projectHover}
-        >
-          프로젝트
-          <meshStandardMaterial map={textMap} side={DoubleSide} />
-        </Text3D>
-        {/* prize 모델 */}
         <TrophyModel setHover={setPrizeHover} isHover={prizeHover} onClick={onClickPrize} />
-        <Text3D
-          ref={prizeTextRef}
-          scale={0.7}
-          position={[-3, 4.5, 10]}
-          font={'/text/pretendard_semibold.json'}
-          visible={prizeHover}
-        >
-          수상이력
-          <meshStandardMaterial map={textMap} side={DoubleSide} />
-        </Text3D>
-        {/* trouble shooting 모델 */}
         <GunModel setHover={setTroubleHover} isHover={troubleHover} onClick={onClickTrouble} />
-        <Text3D
-          ref={troubleTextRef}
-          scale={0.7}
-          position={[-12, 7.5, 0]}
-          font={'/text/pretendard_semibold.json'}
-          visible={troubleHover}
-        >
-          트러블슈팅
-          <meshStandardMaterial map={textMap} side={DoubleSide} />
-        </Text3D>
-        {/* 섬 위에 띄운 공 : 대외활동 */}
         <mesh
           position={[-8, 0, 8]}
           receiveShadow
@@ -159,37 +124,54 @@ const IslandContainer = () => {
           <sphereGeometry args={[2, 32, 32]} />
           <meshStandardMaterial map={colorMap} side={DoubleSide} />
         </mesh>
-        <Text3D
-          ref={activityTextRef}
-          scale={0.7}
-          position={[-10, 6, 8]}
-          font={'/text/pretendard_semibold.json'}
-          visible={activityHover}
-        >
-          대외활동
-          <meshStandardMaterial map={textMap} side={DoubleSide} />
-        </Text3D>
       </Canvas>
-      <div className="absolute bottom-16 right-8 w-[200px] h-[210px] cursor-pointer">
-        <Canvas
-          shadows
-          camera={{
-            fov: 75,
-            near: 0.1,
-            far: 100,
-            position: [0, 0, 2],
-          }}
-          onPointerEnter={() => setWriteHover(true)}
-          onPointerOut={() => setWriteHover(false)}
-          onClick={onClickWrite}
-        >
-          <ambientLight intensity={5} color="#FFFFFF" />
-          {moldevId !== undefined && moldevId === '1' ? (
-            <WriteModel isHover={writeHover} />
-          ) : (
-            <HouseModel isHover={writeHover} />
-          )}
-        </Canvas>
+      <div className="absolute top-[30px] left-[24px]">
+        <LeftToggle
+          icon={<Visit />}
+          text="28명 방문"
+          isItemHover={false}
+          onClick={() => {}}
+          canClick={false}
+        />
+      </div>
+      <div className="absolute bottom-[30px] left-[24px] flex flex-col items-start justify-center gap-y-16">
+        <LeftToggle
+          icon={<Project />}
+          text="프로젝트"
+          isItemHover={projectHover}
+          onClick={() => {}}
+          canClick={true}
+        />
+        <LeftToggle
+          icon={<Trouble />}
+          text="트러블슈팅"
+          isItemHover={troubleHover}
+          onClick={() => {}}
+          canClick={true}
+        />
+        <LeftToggle
+          icon={<Activity />}
+          text="대외활동"
+          isItemHover={activityHover}
+          onClick={() => {}}
+          canClick={true}
+        />
+        <LeftToggle
+          icon={<Prize />}
+          text="수상이력"
+          isItemHover={prizeHover}
+          onClick={() => {}}
+          canClick={true}
+        />
+      </div>
+      <div className="absolute bottom-[30px] right-[24px]">
+        <RightToggle
+          icon={<Write />}
+          text="글쓰기"
+          isItemHover={false}
+          onClick={() => {}}
+          canClick={true}
+        />
       </div>
     </div>
   );

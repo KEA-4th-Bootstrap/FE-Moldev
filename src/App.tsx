@@ -4,6 +4,7 @@ import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import WritePage from './pages/WritePage';
 import ArticlePage from './pages/ArticlePage';
+import ListPage from './pages/ListPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="login" element={<LoginPage />} />
           <Route path="write" element={<WritePage />} />
           <Route path="island/:moldevId">
+            <Route path=":category" element={<ListPage />} />
             <Route path=":articleId" element={<ArticlePage />} />
           </Route>
         </Route>
